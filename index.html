@@ -1,0 +1,1019 @@
+<!doctype html>
+<html lang="ru" data-theme="auto">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Промышленные ворота под ключ — Санкт-Петербург и ЛО</title>
+  <meta name="description" content="Проектируем, производим и монтируем промышленные ворота под ваш объект. Бесплатный замер, точный расчет за 24 часа, монтаж от 2 дней." />
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --surface: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --line: #e2e8f0;
+      --alt-gray: #f7f7f7;
+      --brand: #2563eb;
+      --brand-dark: #1d4ed8;
+      --ok: #059669;
+      --radius: 18px;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --container: 1160px;
+
+      --topbar-bg: rgba(247, 248, 251, 0.85);
+      --ghost-bg: #fff;
+      --hero-eyebrow-bg: #f0fdf4;
+      --hero-eyebrow-border: #bbf7d0;
+      --card-bg: #fff;
+      --input-bg: #fff;
+      --overlay: rgba(2, 6, 23, 0.72);
+      --shadow-soft: 0 18px 50px rgba(15, 23, 42, 0.10);
+      --shadow-lift: 0 26px 70px rgba(15, 23, 42, 0.16);
+      --glass-bg: rgba(255, 255, 255, 0.72);
+      --glass-border: rgba(255, 255, 255, 0.55);
+      --fineprint: #64748b;
+      --badge-bg: #eff6ff;
+      --badge-border: #dbeafe;
+      --check-bg: #fff;
+      --check-text: #1e293b;
+      --quote-text: #334155;
+      --quote-strong: #0f172a;
+      --quote-line: #bfdbfe;
+      --lb-panel-bg: rgba(255,255,255,0.92);
+      --lb-panel-border: rgba(226,232,240,0.9);
+      --lb-top-bg: rgba(248,250,252,0.9);
+      --lb-title: #0f172a;
+      --lb-action-bg: #fff;
+      --lb-action-border: rgba(226,232,240,0.9);
+      --lb-hint: #64748b;
+      --lb-hint-bg: rgba(248,250,252,0.9);
+    }
+
+    /* Тёмная тема (включается через data-theme="dark") */
+    html[data-theme="dark"] {
+      --bg: #0b1220;
+      --surface: rgba(15, 23, 42, 0.72);
+      --text: #e5e7eb;
+      --muted: #a3b0c2;
+      --line: rgba(148, 163, 184, 0.22);
+      --alt-gray: #0e172a;
+      --shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+
+      --topbar-bg: rgba(11, 18, 32, 0.72);
+      --ghost-bg: rgba(15, 23, 42, 0.75);
+      --hero-eyebrow-bg: rgba(5, 150, 105, 0.12);
+      --hero-eyebrow-border: rgba(16, 185, 129, 0.22);
+      --card-bg: rgba(15, 23, 42, 0.72);
+      --input-bg: rgba(15, 23, 42, 0.65);
+      --overlay: rgba(0, 0, 0, 0.72);
+      --shadow-soft: 0 18px 60px rgba(0, 0, 0, 0.35);
+      --shadow-lift: 0 28px 90px rgba(0, 0, 0, 0.45);
+      --glass-bg: rgba(15, 23, 42, 0.58);
+      --glass-border: rgba(148, 163, 184, 0.18);
+      --fineprint: #9fb0c8;
+      --badge-bg: rgba(37, 99, 235, 0.18);
+      --badge-border: rgba(37, 99, 235, 0.4);
+      --check-bg: rgba(15, 23, 42, 0.65);
+      --check-text: #d7e0ee;
+      --quote-text: #b7c4d8;
+      --quote-strong: #e2e8f0;
+      --quote-line: rgba(96, 165, 250, 0.58);
+      --lb-panel-bg: rgba(11, 18, 32, 0.96);
+      --lb-panel-border: rgba(148, 163, 184, 0.28);
+      --lb-top-bg: rgba(15, 23, 42, 0.92);
+      --lb-title: #e5e7eb;
+      --lb-action-bg: rgba(15, 23, 42, 0.82);
+      --lb-action-border: rgba(148, 163, 184, 0.28);
+      --lb-hint: #9fb0c8;
+      --lb-hint-bg: rgba(15, 23, 42, 0.92);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; color: var(--text); background: var(--bg); }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    .container { width: min(var(--container), 92%); margin: 0 auto; }
+    .section { padding: 88px 0; }
+    /* Glassmorphism (очень аккуратно) */
+    .surface {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(10px);
+    }
+
+    /* Чередование фона секций для "лесенки" структуры */
+    main > section.section:nth-of-type(odd) { background: var(--alt-gray); }
+    main > section.section:nth-of-type(even) { background: var(--bg); }
+
+    .topbar {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(10px);
+      background: var(--topbar-bg);
+      border-bottom: 1px solid var(--line);
+    }
+    .topbar-inner {
+      height: 74px; display: flex; align-items: center; justify-content: space-between;
+      gap: 20px;
+      flex-wrap: nowrap;
+    }
+    .brand {
+      display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 15px;
+    }
+    .brand-dot {
+      width: 10px; height: 10px; border-radius: 999px; background: var(--brand);
+      box-shadow: 0 0 0 8px rgba(37, 99, 235, 0.12);
+    }
+    .nav { display: flex; gap: 22px; color: var(--muted); font-weight: 500; font-size: 14px; }
+    .top-cta { display: flex; align-items: center; gap: 14px; }
+    .phone { font-weight: 600; font-size: 14px; white-space: nowrap; }
+
+    .theme-control {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .theme-icon {
+      width: 18px;
+      height: 18px;
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      user-select: none;
+      line-height: 1;
+      font-size: 16px;
+    }
+    .theme-toggle {
+      position: relative;
+      width: 46px;
+      height: 28px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--ghost-bg);
+      cursor: pointer;
+      transition: transform 200ms ease, box-shadow 200ms ease, background-color 200ms ease;
+      user-select: none;
+      padding: 0;
+    }
+    .theme-toggle::before {
+      content: "";
+      position: absolute;
+      inset: 3px auto 3px 3px;
+      width: 22px;
+      border-radius: 999px;
+      background: var(--brand);
+      box-shadow: 0 8px 18px rgba(37,99,235,0.35);
+      transition: transform 220ms ease;
+    }
+    html[data-theme="dark"] .theme-toggle::before { transform: translateX(18px); }
+    @media (hover:hover) and (pointer:fine) {
+      .theme-toggle:hover { transform: translateY(-1px); box-shadow: 0 18px 44px rgba(15,23,42,0.12); }
+    }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      border: 1px solid transparent; border-radius: 12px; padding: 12px 18px;
+      font-weight: 600; font-size: 14px; cursor: pointer; transition: .2s ease;
+    }
+    .btn-primary { background: var(--brand); color: #fff; }
+    .btn-primary:hover { background: var(--brand-dark); transform: translateY(-1px); }
+    .btn-ghost { border-color: var(--line); background: var(--ghost-bg); color: var(--text); }
+
+    .hero {
+      padding: 56px 0 44px;
+    }
+    .hero-grid {
+      display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 28px;
+    }
+    .hero-card { padding: 42px; }
+    .eyebrow {
+      display: inline-flex; gap: 8px; align-items: center; color: var(--ok);
+      border: 1px solid var(--hero-eyebrow-border); background: var(--hero-eyebrow-bg); padding: 8px 12px; border-radius: 999px;
+      font-weight: 600; font-size: 13px;
+    }
+    h1 {
+      margin: 18px 0 16px; font-size: clamp(34px, 6vw, 60px); line-height: 1.02; letter-spacing: -0.02em;
+    }
+    .lead {
+      color: var(--muted); font-size: clamp(17px, 2.1vw, 20px); max-width: 58ch;
+      line-height: 1.55; margin: 0 0 28px;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 22px; }
+    .hero-meta {
+      display: grid; grid-template-columns: repeat(3, minmax(120px, 1fr)); gap: 12px;
+    }
+    .meta-box {
+      border: 1px solid var(--line); border-radius: 12px; padding: 14px;
+      background: var(--card-bg);
+    }
+    .meta-box b { font-size: 22px; display: block; margin-bottom: 4px; }
+    .meta-box span { font-size: 13px; color: var(--muted); }
+
+    .form-card { padding: 28px; }
+    .form-title { margin: 0 0 8px; font-size: 24px; letter-spacing: -0.01em; }
+    .form-sub { margin: 0 0 18px; color: var(--muted); font-size: 14px; line-height: 1.45; }
+    .form-grid { display: grid; gap: 10px; }
+    .field {
+      width: 100%; border: 1px solid var(--line); border-radius: 10px;
+      padding: 12px 14px; font-size: 14px; background: var(--input-bg); color: var(--text);
+    }
+    .field::placeholder { color: color-mix(in srgb, var(--muted) 78%, transparent); }
+    .field:focus { outline: none; border-color: #93c5fd; box-shadow: 0 0 0 4px rgba(59,130,246,.12); }
+    .fineprint { margin: 10px 0 0; color: var(--fineprint); font-size: 12px; line-height: 1.4; }
+
+    .section h2 {
+      margin: 0 0 14px; font-size: clamp(28px, 4vw, 42px); line-height: 1.08; letter-spacing: -0.02em;
+    }
+    .section p.section-lead {
+      margin: 0; color: var(--muted); max-width: 70ch; line-height: 1.6;
+    }
+
+    .problem-list, .benefit-list, .process-grid, .types-grid, .proof-grid {
+      margin-top: 28px; display: grid; gap: 14px;
+    }
+    .problem-list { grid-template-columns: repeat(3, 1fr); }
+    .benefit-list { grid-template-columns: repeat(4, 1fr); }
+    /* Break-grid layout для типов */
+    .types-grid {
+      grid-template-columns: repeat(12, 1fr);
+      align-items: stretch;
+    }
+    .proof-grid { grid-template-columns: repeat(3, 1fr); }
+    .process-grid { grid-template-columns: repeat(4, 1fr); }
+
+    .card {
+      background: var(--card-bg); border: 1px solid var(--line); border-radius: 14px; padding: 20px;
+      transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+    }
+
+    /* Break-grid размещение карточек типов + лёгкий overlap */
+    #types .types-grid > .card:nth-child(1) { grid-column: 1 / span 7; }
+    #types .types-grid > .card:nth-child(2) { grid-column: 8 / -1; transform: translateY(18px); }
+    #types .types-grid > .card:nth-child(3) { grid-column: 1 / span 5; transform: translateY(-8px); }
+    #types .types-grid > .card:nth-child(4) { grid-column: 6 / -1; transform: translateY(10px); }
+
+    @media (hover: hover) and (pointer: fine) {
+      #types .types-grid > .card:hover { box-shadow: var(--shadow-lift); }
+    }
+    .card h3 { margin: 0 0 8px; font-size: 19px; letter-spacing: -0.01em; }
+    .card p { margin: 0; color: var(--muted); line-height: 1.55; font-size: 15px; }
+
+    .media-placeholder {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      border-radius: 12px;
+      background: #0a0a0a;
+      border: 1px solid #1f2937;
+      margin-bottom: 12px;
+      transition: transform 220ms ease;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .card:hover .media-placeholder { transform: scale(1.03); }
+    }
+
+    .gallery-grid {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+    }
+    .gallery-item {
+      aspect-ratio: 1 / 1;
+      border-radius: 12px;
+      background: #0a0a0a;
+      border: 1px solid #1f2937;
+      transition: transform 220ms ease, box-shadow 220ms ease;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .gallery-item:hover {
+        transform: scale(1.03);
+        box-shadow: 0 18px 44px rgba(15, 23, 42, 0.12);
+      }
+    }
+
+    .contacts-grid {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 16px;
+    }
+    .contact-card { padding: 22px; }
+    .contact-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; }
+    .contact-list strong { color: var(--text); display: block; margin-bottom: 2px; }
+    .map-wrap {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: var(--card-bg);
+      min-height: 320px;
+    }
+    .map-wrap iframe {
+      width: 100%;
+      height: 100%;
+      min-height: inherit;
+      display: block;
+    }
+
+    /* Lightbox (просмотр фото) */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      background: var(--overlay);
+      backdrop-filter: blur(6px);
+    }
+    .lightbox.open { display: flex; }
+    .lightbox-panel {
+      width: min(980px, 96vw);
+      background: var(--lb-panel-bg);
+      border: 1px solid var(--lb-panel-border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(2, 6, 23, 0.35);
+    }
+    .lightbox-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--lb-panel-border);
+      background: var(--lb-top-bg);
+    }
+    .lightbox-title { font-weight: 600; font-size: 14px; color: var(--lb-title); }
+    .lightbox-actions { display: flex; gap: 8px; }
+    .lightbox-action {
+      width: 40px; height: 40px;
+      border-radius: 12px;
+      border: 1px solid var(--lb-action-border);
+      background: var(--lb-action-bg);
+      color: var(--text);
+      cursor: pointer;
+      transition: transform 200ms ease, box-shadow 200ms ease;
+    }
+    @media (hover:hover) and (pointer:fine) {
+      .lightbox-action:hover { transform: translateY(-1px); box-shadow: 0 18px 44px rgba(15,23,42,0.12); }
+    }
+    .lightbox-body {
+      position: relative;
+      background: #0b1220;
+      display: grid;
+      place-items: center;
+      min-height: min(70vh, 620px);
+    }
+    .lightbox-media {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+    }
+    .lightbox-media > div {
+      width: 100%;
+      max-width: 920px;
+      aspect-ratio: 16 / 10;
+      border-radius: 14px;
+      background: #0a0a0a;
+      border: 1px solid #1f2937;
+    }
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      border: 1px solid rgba(148,163,184,0.35);
+      background: rgba(15,23,42,0.72);
+      color: #fff;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+    }
+    .lightbox-nav.prev { left: 14px; }
+    .lightbox-nav.next { right: 14px; }
+    .lightbox-nav[disabled] { opacity: 0.35; cursor: default; }
+    .lightbox-hint {
+      padding: 10px 14px;
+      font-size: 12px;
+      color: var(--lb-hint);
+      border-top: 1px solid var(--lb-panel-border);
+      background: var(--lb-hint-bg);
+    }
+    @media (max-width: 760px) {
+      .lightbox-body { min-height: min(64vh, 520px); }
+      .lightbox-media { padding: 12px; }
+      .lightbox-nav.prev { left: 10px; }
+      .lightbox-nav.next { right: 10px; }
+    }
+
+    /* Только при точном устройстве ввода (мышь) */
+    @media (hover: hover) and (pointer: fine) {
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 18px 44px rgba(15, 23, 42, 0.12);
+        border-color: rgba(37, 99, 235, 0.25);
+      }
+    }
+
+    .badge {
+      width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center;
+      background: var(--badge-bg); color: var(--brand); font-weight: 700; margin-bottom: 12px;
+      border: 1px solid var(--badge-border);
+    }
+
+    .solution-block {
+      margin-top: 28px; padding: 28px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+    }
+    .checklist { display: grid; gap: 10px; }
+    .check {
+      border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; background: var(--check-bg);
+      color: var(--check-text); font-size: 15px;
+    }
+
+    .proof-quote {
+      margin-top: 28px; padding: 28px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+    }
+    .quote {
+      border-left: 3px solid var(--quote-line); padding-left: 14px; color: var(--quote-text);
+      line-height: 1.6; font-size: 15px;
+    }
+    .quote b { color: var(--quote-strong); }
+
+    .cta-block {
+      margin-top: 28px; padding: 36px;
+      display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 16px;
+      background: linear-gradient(135deg, #0b1220 0%, #1e293b 100%);
+      color: #fff;
+      border-radius: 18px;
+      transition: transform 220ms ease;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .cta-block:hover { transform: translateY(-2px); }
+    }
+    .cta-block h3 { margin: 0 0 8px; font-size: clamp(24px, 3vw, 34px); letter-spacing: -0.02em; }
+    .cta-block p { margin: 0; color: #cbd5e1; max-width: 56ch; }
+
+    /* Микро-анимации появления секций */
+    .reveal {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 700ms ease, transform 700ms ease;
+    }
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+
+    footer {
+      padding: 40px 0 60px; color: var(--fineprint); font-size: 14px;
+    }
+
+    /* Лёгкая глубина: приподнимаем форму на десктопе */
+    @media (min-width: 1081px) {
+      .hero-grid > aside.form-card { transform: translateY(-14px); }
+      .hero-grid > aside.form-card.surface { box-shadow: var(--shadow-lift); }
+    }
+    .footer-grid {
+      display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: center; justify-content: space-between;
+      border-top: 1px solid var(--line); padding-top: 24px;
+    }
+
+    @media (max-width: 1080px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .problem-list { grid-template-columns: 1fr 1fr; }
+      .benefit-list { grid-template-columns: 1fr 1fr; }
+      .types-grid { grid-template-columns: 1fr; }
+      #types .types-grid > .card:nth-child(1),
+      #types .types-grid > .card:nth-child(2),
+      #types .types-grid > .card:nth-child(3),
+      #types .types-grid > .card:nth-child(4) { grid-column: auto; transform: none; }
+      .proof-grid, .process-grid, .solution-block, .proof-quote { grid-template-columns: 1fr; }
+      .cta-block { grid-template-columns: 1fr; }
+      .top-cta .phone { display: none; }
+      .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+      .contacts-grid { grid-template-columns: 1fr; }
+      .map-wrap { min-height: 280px; }
+    }
+
+    @media (max-width: 760px) {
+      .nav { display: none; }
+      .topbar-inner { height: 62px; gap: 12px; }
+      .brand { font-size: 14px; }
+      .hero { padding: 28px 0 28px; }
+      .hero-card, .form-card, .contact-card { padding: 22px; }
+      .section { padding: 64px 0; }
+      .top-cta { gap: 8px; }
+      .top-cta .btn { padding: 10px 12px; font-size: 13px; }
+      .theme-toggle { width: 44px; height: 28px; }
+      .problem-list, .benefit-list { grid-template-columns: 1fr; }
+      .hero-meta { grid-template-columns: 1fr; }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .hero-actions .btn { width: 100%; }
+      .types-grid { grid-template-columns: 1fr; }
+      #types .types-grid > .card:nth-child(1),
+      #types .types-grid > .card:nth-child(2),
+      #types .types-grid > .card:nth-child(3),
+      #types .types-grid > .card:nth-child(4) { transform: none; }
+      .proof-grid, .process-grid, .solution-block, .proof-quote { grid-template-columns: 1fr; }
+      .cta-block { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .contacts-grid { grid-template-columns: 1fr; }
+      .map-wrap { min-height: 260px; }
+      .field { font-size: 16px; padding: 14px; }
+      .btn { padding: 14px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="#top">
+        <span class="brand-dot"></span>
+        PROVOROTA
+      </a>
+      <nav class="nav">
+        <a href="#problem">Проблема</a>
+        <a href="#solution">Решение</a>
+        <a href="#types">Типы ворот</a>
+        <a href="#gallery">Галерея</a>
+        <a href="#process">Этапы</a>
+        <a href="#contact">Контакты</a>
+      </nav>
+      <div class="top-cta">
+        <a class="phone" href="tel:+79219413351">+7 (921) 941-33-51</a>
+        <!-- соцкнопки убраны по запросу -->
+        <div class="theme-control">
+          <span class="theme-icon" id="themeIcon" aria-hidden="true">☀</span>
+          <button class="theme-toggle" type="button" id="themeToggle" role="switch" aria-checked="false" aria-label="Переключить тему"></button>
+        </div>
+        <a class="btn btn-primary" href="#lead-form">Получить расчет</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-card surface">
+          <span class="eyebrow">Работаем 24/7 • Санкт-Петербург и ЛО</span>
+          <h1>Промышленные ворота, которые не тормозят ваш бизнес</h1>
+          <p class="lead">
+            Проектируем, производим и монтируем ворота под ваш объект: склад, цех, ангар, сервис или логистический центр.
+            Точный расчет за 24 часа, монтаж от 2 дней, гарантия по договору.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#lead-form">Бесплатный замер и расчет</a>
+            <a class="btn btn-ghost" href="#types">Выбрать тип ворот</a>
+          </div>
+
+          <div class="hero-meta">
+            <div class="meta-box">
+              <b>24 ч</b>
+              <span>на коммерческое предложение</span>
+            </div>
+            <div class="meta-box">
+              <b>до 12.5×15 м</b>
+              <span>изготовление нестандартных размеров</span>
+            </div>
+            <div class="meta-box">
+              <b>Один подрядчик</b>
+              <span>от замера до монтажа</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="form-card surface" id="lead-form">
+          <h2 class="form-title">Рассчитать стоимость</h2>
+          <p class="form-sub">Оставьте контакты. Инженер перезвонит, уточнит задачу и подготовит понятный расчет без скрытых работ.</p>
+          <form class="form-grid" id="lead-form-form" onsubmit="event.preventDefault(); alert('Спасибо! Мы свяжемся с вами в ближайшее время.');">
+            <input class="field" type="text" placeholder="Имя" required />
+            <input class="field" type="tel" placeholder="Телефон" required />
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+              <input class="field" type="text" placeholder="Ширина (м)" inputmode="decimal" />
+              <input class="field" type="text" placeholder="Длина (м)" inputmode="decimal" />
+            </div>
+            <select class="field" required id="gate-type" name="gate-type">
+              <option value="" disabled selected>Тип ворот</option>
+              <option value="Секционные">Секционные</option>
+              <option value="Складчатые">Складчатые</option>
+              <option value="Распашные">Распашные</option>
+              <option value="Скоростные">Скоростные</option>
+            </select>
+            <textarea class="field" rows="4" placeholder="Кратко опишите объект (размер проема, режим работы, температура)"></textarea>
+            <button class="btn btn-primary" type="submit">Получить расчет за 24 часа</button>
+          </form>
+          <p class="fineprint">Нажимая кнопку, вы соглашаетесь на обработку персональных данных.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="problem">
+      <div class="container">
+        <h2>Почему объекты теряют деньги на воротах</h2>
+        <p class="section-lead">Типовые решения не учитывают реальную нагрузку, климат и сценарии работы. В итоге — простои, теплопотери и лишние расходы.</p>
+        <div class="problem-list">
+          <article class="card">
+            <div class="badge">01</div>
+            <h3>Простои и очереди транспорта</h3>
+            <p>Медленное открытие ворот задерживает погрузку и разгрузку, ломает график смен и увеличивает издержки.</p>
+          </article>
+          <article class="card">
+            <div class="badge">02</div>
+            <h3>Потери тепла и перепады температуры</h3>
+            <p>Негерметичность проема бьет по отоплению, холодильным зонам и качеству хранения продукции.</p>
+          </article>
+          <article class="card">
+            <div class="badge">03</div>
+            <h3>Поломки в пик нагрузки</h3>
+            <p>Неправильный подбор автоматики и фурнитуры приводит к остановке процессов в самый важный момент.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="solution">
+      <div class="container">
+        <h2>Решение под ваш режим работы</h2>
+        <p class="section-lead">Мы не продаем «просто ворота». Мы проектируем узел проема под ваш поток техники, климат, частоту открытий и требования безопасности.</p>
+
+        <div class="solution-block surface">
+          <div class="checklist">
+            <div class="check">Подбор конструкции под размер проема и интенсивность эксплуатации</div>
+            <div class="check">Теплые панели и герметизация для снижения теплопотерь</div>
+            <div class="check">Автоматика и безопасность: фотоэлементы, сигналы, контроль доступа</div>
+          </div>
+          <div class="checklist">
+            <div class="check">Производство по ТЗ без «подгонки на месте»</div>
+            <div class="check">Монтаж с пусконаладкой и инструктажем персонала</div>
+            <div class="check">Сервис и запасные части после запуска</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>Что вы получаете в итоге</h2>
+        <p class="section-lead">Измеримые бизнес-результаты, а не просто установленные ворота.</p>
+        <div class="benefit-list">
+          <article class="card"><h3>Быстрее поток</h3><p>Меньше времени на каждый цикл проезда и обработки груза.</p></article>
+          <article class="card"><h3>Ниже расходы</h3><p>Снижение затрат на отопление и внеплановые ремонты.</p></article>
+          <article class="card"><h3>Стабильная работа</h3><p>Конструкция и автоматика рассчитаны под реальную нагрузку.</p></article>
+          <article class="card"><h3>Безопасность</h3><p>Защита людей, техники и продукции в зоне проема.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="types">
+      <div class="container">
+        <h2>Подберем нужный тип ворот</h2>
+        <p class="section-lead">Каждый тип решает свою задачу. Подскажем оптимальный вариант после короткого брифа.</p>
+        <div class="types-grid">
+          <article class="card">
+            <div class="media-placeholder" role="img" aria-label="Фото секционных ворот"></div>
+            <h3>Секционные</h3>
+            <p>Универсальный вариант для складов и цехов: теплоизоляция, надежность, широкий выбор комплектаций.</p>
+            <div style="margin-top: 14px;">
+              <button class="btn btn-primary type-choose" type="button" data-type="Секционные">Оформить</button>
+            </div>
+          </article>
+          <article class="card">
+            <div class="media-placeholder" role="img" aria-label="Фото складчатых ворот"></div>
+            <h3>Складчатые</h3>
+            <p>Для больших проемов и ограниченного пространства. Удобное открытие и высокая герметичность.</p>
+            <div style="margin-top: 14px;">
+              <button class="btn btn-primary type-choose" type="button" data-type="Складчатые">Оформить</button>
+            </div>
+          </article>
+          <article class="card">
+            <div class="media-placeholder" role="img" aria-label="Фото распашных ворот"></div>
+            <h3>Распашные</h3>
+            <p>Простое и выносливое решение для объектов с особыми требованиями к конструкции и бюджету.</p>
+            <div style="margin-top: 14px;">
+              <button class="btn btn-primary type-choose" type="button" data-type="Распашные">Оформить</button>
+            </div>
+          </article>
+          <article class="card">
+            <div class="media-placeholder" role="img" aria-label="Фото скоростных ворот"></div>
+            <h3>Скоростные</h3>
+            <p>Максимальная скорость цикла для интенсивных зон: логистика, производство, холодильные камеры.</p>
+            <div style="margin-top: 14px;">
+              <button class="btn btn-primary type-choose" type="button" data-type="Скоростные">Оформить</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="process">
+      <div class="container">
+        <h2>Как проходит работа</h2>
+        <p class="section-lead">Прозрачный процесс без сюрпризов и потери времени.</p>
+        <div class="process-grid">
+          <article class="card"><div class="badge">1</div><h3>Бриф 15 минут</h3><p>Уточняем задачу, режим объекта и ограничения.</p></article>
+          <article class="card"><div class="badge">2</div><h3>Замер и ТЗ</h3><p>Инженер выезжает, фиксирует параметры и риски.</p></article>
+          <article class="card"><div class="badge">3</div><h3>Расчет и договор</h3><p>Даем финальную смету, сроки и комплектацию.</p></article>
+          <article class="card"><div class="badge">4</div><h3>Монтаж и запуск</h3><p>Устанавливаем, настраиваем, передаем в эксплуатацию.</p></article>
+        </div>
+
+        <div class="cta-block" id="cta-contact">
+          <div>
+            <h3>Нужен расчет под ваш объект?</h3>
+            <p>Оставьте заявку — в течение 24 часов получите коммерческое предложение с понятной стоимостью, сроками и комплектацией.</p>
+          </div>
+          <a class="btn btn-primary" href="#lead-form">Оставить заявку</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="gallery">
+      <div class="container">
+        <h2>Галерея работ</h2>
+        <div class="gallery-grid" aria-label="Галерея из 17 фото">
+          <div class="gallery-item" role="img" aria-label="Фото 1"></div>
+          <div class="gallery-item" role="img" aria-label="Фото 2"></div>
+          <div class="gallery-item" role="img" aria-label="Фото 3"></div>
+          <div class="gallery-item" role="img" aria-label="Фото 4"></div>
+          <div class="gallery-item" role="img" aria-label="Фото 5"></div>
+          <div class="gallery-item" role="img" aria-label="Фото 6"></div>
+          <div class="gallery-item" role="img" aria-label="Фото 7"></div>
+          <div class="gallery-item" role="img" aria-label="Фото 8"></div>
+          <div class="gallery-item" role="img" aria-label="Фото 9"></div>
+          <div class="gallery-item" role="img" aria-label="Фото 10"></div>
+          <div class="gallery-item" role="img" aria-label="Фото 11"></div>
+          <div class="gallery-item" role="img" aria-label="Фото 12"></div>
+          <div class="gallery-item" role="img" aria-label="Фото 13"></div>
+          <div class="gallery-item" role="img" aria-label="Фото 14"></div>
+          <div class="gallery-item" role="img" aria-label="Фото 15"></div>
+          <div class="gallery-item" role="img" aria-label="Фото 16"></div>
+          <div class="gallery-item" role="img" aria-label="Фото 17"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <h2>Контакты</h2>
+        <p class="section-lead">Пишите, звоните или приезжайте. Мы ответим и поможем подобрать ворота под ваш объект.</p>
+        <div class="contacts-grid">
+          <article class="surface contact-card">
+            <ul class="contact-list">
+              <li>
+                <strong>Наш адрес</strong>
+                Южное ш., 37к1Г21, Санкт-Петербург
+              </li>
+              <li>
+                <strong>Время работы</strong>
+                09:00 – 20:00
+              </li>
+              <li>
+                <strong>Телефон</strong>
+                <a href="tel:+78129413351">+7 (812) 941-33-51</a><br />
+                <a href="tel:+79219413351">+7 (921) 941-33-51</a>
+              </li>
+              <li>
+                <strong>Email</strong>
+                <a href="mailto:info@activeservice.pro">info@activeservice.pro</a>
+              </li>
+              <li>
+                <strong>Филиал в Смоленске</strong>
+                ул. Б. Советская, 6<br />
+                <a href="mailto:info@smolvorota24.ru">info@smolvorota24.ru</a>
+              </li>
+            </ul>
+
+            <div style="margin-top: 16px; display: flex; gap: 12px; flex-wrap: wrap;">
+              <a class="btn btn-primary" href="tel:+78129413351">Позвонить</a>
+              <a class="btn btn-ghost" href="#lead-form">Запросить расчет</a>
+              <button class="btn btn-ghost" type="button">Написать в Telegram</button>
+              <button class="btn btn-ghost" type="button">Написать в WhatsApp</button>
+            </div>
+          </article>
+
+          <div class="map-wrap" aria-label="Карта офиса в Санкт-Петербурге">
+            <iframe
+              loading="lazy"
+              src="https://maps.google.com/maps?q=59.864715,30.420980&z=15&output=embed"
+              title="Карта офиса в Санкт-Петербурге"
+              aria-label="Карта офиса в Санкт-Петербурге"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <span>PROVOROTA • Производство и монтаж промышленных ворот</span>
+      <span>Санкт-Петербург и Ленинградская область</span>
+      <a href="tel:+79219413351">+7 (921) 941-33-51</a>
+      <!-- соцкнопки убраны по запросу -->
+    </div>
+  </footer>
+
+  <!-- Lightbox для фото/галереи -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lightbox-panel" role="dialog" aria-modal="true" aria-label="Просмотр фото">
+      <div class="lightbox-top">
+        <div class="lightbox-title" id="lightboxTitle">Фото</div>
+        <div class="lightbox-actions">
+          <button class="lightbox-action" type="button" id="lightboxClose" aria-label="Закрыть">✕</button>
+        </div>
+      </div>
+      <div class="lightbox-body">
+        <button class="lightbox-nav prev" type="button" id="lightboxPrev" aria-label="Предыдущее">‹</button>
+        <div class="lightbox-media" id="lightboxMedia"></div>
+        <button class="lightbox-nav next" type="button" id="lightboxNext" aria-label="Следующее">›</button>
+      </div>
+      <div class="lightbox-hint">Подсказка: используйте клавиши ← → для переключения и Esc для закрытия.</div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      // Theme: auto / light / dark (persist in localStorage)
+      const root = document.documentElement;
+      const toggle = document.getElementById('themeToggle');
+      const key = 'prov-theme';
+      const systemDark = () => window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+      const icon = document.getElementById('themeIcon');
+
+      const applyTheme = (mode) => {
+        // mode: 'auto' | 'light' | 'dark'
+        if (mode === 'auto') {
+          root.setAttribute('data-theme', systemDark() ? 'dark' : 'light');
+        } else {
+          root.setAttribute('data-theme', mode);
+        }
+        if (toggle) {
+          const current = root.getAttribute('data-theme');
+          toggle.setAttribute('aria-checked', current === 'dark' ? 'true' : 'false');
+          toggle.setAttribute('title', current === 'dark' ? 'Тёмная тема включена' : 'Светлая тема включена');
+        }
+        if (icon) {
+          const current = root.getAttribute('data-theme');
+          icon.textContent = current === 'dark' ? '🌙' : '☀';
+        }
+      };
+
+      const saved = localStorage.getItem(key) || 'auto';
+      applyTheme(saved);
+
+      // If system changes and we're in auto, update
+      if (window.matchMedia) {
+        const mq = window.matchMedia('(prefers-color-scheme: dark)');
+        const handler = () => {
+          const s = localStorage.getItem(key) || 'auto';
+          if (s === 'auto') applyTheme('auto');
+        };
+        if (mq.addEventListener) mq.addEventListener('change', handler);
+        else if (mq.addListener) mq.addListener(handler);
+      }
+
+      if (toggle) {
+        toggle.addEventListener('click', () => {
+          const stored = localStorage.getItem(key) || 'auto';
+          const next = stored === 'dark' ? 'light' : 'dark';
+          localStorage.setItem(key, next);
+          applyTheme(next);
+        });
+      }
+
+      const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const enableReveal = !reduce;
+
+      if (enableReveal) {
+        const candidates = document.querySelectorAll(
+          '.hero-card, .form-card, .solution-block, .proof-quote, .cta-block, main > section.section > .container'
+        );
+        candidates.forEach((el) => el.classList.add('reveal'));
+
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add('in-view');
+              io.unobserve(entry.target);
+            });
+          },
+          { threshold: 0.12 }
+        );
+
+        candidates.forEach((el) => io.observe(el));
+      }
+
+      // Кнопки "Оформить" подставляют выбранный тип в форму
+      const gateTypeSelect = document.getElementById('gate-type');
+      const leadAside = document.getElementById('lead-form');
+      const typeButtons = document.querySelectorAll('.type-choose');
+      const behavior = reduce ? 'auto' : 'smooth';
+
+      typeButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const type = btn.getAttribute('data-type');
+          if (gateTypeSelect && type) gateTypeSelect.value = type;
+          if (leadAside) leadAside.scrollIntoView({ behavior, block: 'start' });
+          if (gateTypeSelect) gateTypeSelect.focus();
+        });
+      });
+
+      // Lightbox: клики по галерее и фото в типах
+      const lightbox = document.getElementById('lightbox');
+      const lbTitle = document.getElementById('lightboxTitle');
+      const lbMedia = document.getElementById('lightboxMedia');
+      const lbClose = document.getElementById('lightboxClose');
+      const lbPrev = document.getElementById('lightboxPrev');
+      const lbNext = document.getElementById('lightboxNext');
+
+      const clickable = Array.from(document.querySelectorAll('.gallery-item, .media-placeholder'));
+      clickable.forEach((el, idx) => el.setAttribute('data-lb-idx', String(idx)));
+
+      let current = 0;
+      let lastActive = null;
+
+      const render = () => {
+        const el = clickable[current];
+        const label = el?.getAttribute('aria-label') || `Фото ${current + 1}`;
+        lbTitle.textContent = label;
+
+        lbMedia.innerHTML = '';
+        const box = document.createElement('div');
+
+        // Если позже замените на background-image, lightbox подхватит его автоматически
+        const bg = getComputedStyle(el).backgroundImage;
+        if (bg && bg !== 'none') box.style.backgroundImage = bg;
+        box.style.backgroundSize = 'cover';
+        box.style.backgroundPosition = 'center';
+        box.style.backgroundRepeat = 'no-repeat';
+
+        lbMedia.appendChild(box);
+
+        lbPrev.disabled = current <= 0;
+        lbNext.disabled = current >= clickable.length - 1;
+      };
+
+      const open = (idx) => {
+        lastActive = document.activeElement;
+        current = Math.max(0, Math.min(clickable.length - 1, idx));
+        render();
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        lbClose.focus();
+      };
+
+      const close = () => {
+        lightbox.classList.remove('open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        if (lastActive && typeof lastActive.focus === 'function') lastActive.focus();
+      };
+
+      const prev = () => {
+        if (current <= 0) return;
+        current -= 1;
+        render();
+      };
+      const next = () => {
+        if (current >= clickable.length - 1) return;
+        current += 1;
+        render();
+      };
+
+      clickable.forEach((el) => {
+        el.style.cursor = 'zoom-in';
+        el.addEventListener('click', () => open(Number(el.getAttribute('data-lb-idx') || '0')));
+      });
+
+      lbClose.addEventListener('click', close);
+      lbPrev.addEventListener('click', prev);
+      lbNext.addEventListener('click', next);
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) close();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('open')) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowLeft') prev();
+        if (e.key === 'ArrowRight') next();
+      });
+    })();
+  </script>
+</body>
+</html>
