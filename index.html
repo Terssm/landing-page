@@ -7,17 +7,17 @@
   <meta name="description" content="Проектируем, производим и монтируем промышленные ворота под ваш объект. Бесплатный замер, точный расчет за 24 часа, монтаж от 2 дней." />
   <style>
     :root {
-      --bg: #f7f8fb;
+      --bg: #ffffff;
       --surface: #ffffff;
       --text: #0f172a;
       --muted: #475569;
-      --line: #e2e8f0;
-      --alt-gray: #f7f7f7;
+      --line: #c8d1e0;
+      --alt-gray: #e9ecf5;
       --brand: #2563eb;
       --brand-dark: #1d4ed8;
       --ok: #059669;
       --radius: 18px;
-      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
       --container: 1160px;
 
       --topbar-bg: rgba(247, 248, 251, 0.85);
@@ -27,10 +27,10 @@
       --card-bg: #fff;
       --input-bg: #fff;
       --overlay: rgba(2, 6, 23, 0.72);
-      --shadow-soft: 0 18px 50px rgba(15, 23, 42, 0.10);
-      --shadow-lift: 0 26px 70px rgba(15, 23, 42, 0.16);
-      --glass-bg: rgba(255, 255, 255, 0.72);
-      --glass-border: rgba(255, 255, 255, 0.55);
+      --shadow-soft: 0 18px 50px rgba(15, 23, 42, 0.13);
+      --shadow-lift: 0 26px 70px rgba(15, 23, 42, 0.18);
+      --glass-bg: rgba(255, 255, 255, 0.88);
+      --glass-border: rgba(180, 195, 216, 0.7);
       --fineprint: #64748b;
       --badge-bg: #eff6ff;
       --badge-border: #dbeafe;
@@ -89,12 +89,13 @@
     }
 
     * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; color: var(--text); background: var(--bg); }
+    html, body { margin: 0; padding: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
     img { max-width: 100%; display: block; }
     a { color: inherit; text-decoration: none; }
 
     .container { width: min(var(--container), 92%); margin: 0 auto; }
-    .section { padding: 88px 0; }
+    .section { padding: 96px 0; }
+    .section-header { margin-bottom: 36px; }
     /* Glassmorphism (очень аккуратно) */
     .surface {
       background: var(--glass-bg);
@@ -107,6 +108,114 @@
     /* Чередование фона секций для "лесенки" структуры */
     main > section.section:nth-of-type(odd) { background: var(--alt-gray); }
     main > section.section:nth-of-type(even) { background: var(--bg); }
+    main > section.section {
+      border-top: 1px solid var(--line);
+    }
+
+    /* ─── Decorative dot grid on alternating sections ─── */
+    /* ─── Decorative: dot grid ─── */
+    main > section.section:nth-of-type(odd) {
+      background-image: radial-gradient(circle, rgba(37, 99, 235, 0.18) 1.2px, transparent 1.2px);
+      background-size: 22px 22px;
+    }
+    html[data-theme="dark"] main > section.section:nth-of-type(odd) {
+      background-image: radial-gradient(circle, rgba(148, 163, 184, 0.1) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+
+    /* ─── Decorative: cross pattern on even sections (light only) ─── */
+    html:not([data-theme="dark"]) main > section.section:nth-of-type(even) {
+      background-image:
+        linear-gradient(rgba(37, 99, 235, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(37, 99, 235, 0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+
+    /* ─── Decorative: hero glow ─── */
+    .hero {
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -10%; right: -5%;
+      width: 65%; height: 120%;
+      background:
+        radial-gradient(ellipse at 65% 25%, rgba(37, 99, 235, 0.22) 0%, transparent 50%),
+        radial-gradient(ellipse at 30% 80%, rgba(37, 99, 235, 0.08) 0%, transparent 45%);
+      pointer-events: none;
+    }
+    html[data-theme="dark"] .hero::before {
+      width: 60%; height: 100%;
+      top: 0; right: 0;
+      background: radial-gradient(ellipse at 70% 30%, rgba(37, 99, 235, 0.14) 0%, transparent 55%);
+    }
+
+    /* ─── Decorative: glow on even sections ─── */
+    main > section.section:nth-of-type(even) {
+      position: relative;
+    }
+    main > section.section:nth-of-type(even)::after {
+      content: '';
+      position: absolute;
+      bottom: -5%; left: -5%;
+      width: 50%; height: 60%;
+      background:
+        radial-gradient(ellipse at 15% 85%, rgba(37, 99, 235, 0.14) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    html[data-theme="dark"] main > section.section:nth-of-type(even)::after {
+      bottom: 0; left: 0;
+      width: 40%; height: 50%;
+      background: radial-gradient(ellipse at 10% 90%, rgba(37, 99, 235, 0.1) 0%, transparent 60%);
+    }
+
+    /* ─── Decorative: glow on odd sections (top-right, light only) ─── */
+    html:not([data-theme="dark"]) main > section.section:nth-of-type(odd) {
+      position: relative;
+    }
+    html:not([data-theme="dark"]) main > section.section:nth-of-type(odd)::after {
+      content: '';
+      position: absolute;
+      top: -5%; right: -5%;
+      width: 45%; height: 55%;
+      background: radial-gradient(ellipse at 85% 20%, rgba(37, 99, 235, 0.12) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    /* ─── Decorative: CTA diagonal ─── */
+    .cta-block {
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-block::before {
+      content: '';
+      position: absolute;
+      top: -50%; right: -10%;
+      width: 200px; height: 200%;
+      background: linear-gradient(180deg, transparent, rgba(37, 99, 235, 0.25), transparent);
+      transform: rotate(15deg);
+      pointer-events: none;
+    }
+
+    /* ─── Decorative: section top accent line ─── */
+    main > section.section:nth-of-type(odd)::before {
+      content: '';
+      display: block;
+      height: 3px;
+      background: linear-gradient(90deg, transparent 5%, var(--brand) 50%, transparent 95%);
+      opacity: 0.4;
+      margin-bottom: -3px;
+      position: relative;
+      top: -96px;
+      z-index: 1;
+    }
+    html[data-theme="dark"] main > section.section:nth-of-type(odd)::before {
+      opacity: 0.25;
+    }
+    @media (max-width: 760px) {
+      main > section.section:nth-of-type(odd)::before { top: -64px; }
+    }
 
     .topbar {
       position: sticky; top: 0; z-index: 50;
@@ -126,7 +235,27 @@
       width: 10px; height: 10px; border-radius: 999px; background: var(--brand);
       box-shadow: 0 0 0 8px rgba(37, 99, 235, 0.12);
     }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
     .nav { display: flex; gap: 22px; color: var(--muted); font-weight: 500; font-size: 14px; }
+    .nav a {
+      position: relative;
+      padding: 4px 0;
+      transition: color 250ms ease;
+    }
+    .nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0;
+      width: 0; height: 2px;
+      background: var(--brand);
+      border-radius: 2px;
+      transition: width 300ms ease;
+    }
+    .nav a:hover { color: var(--text); }
+    .nav a.active { color: var(--brand); }
+    .nav a.active::after { width: 100%; }
     .top-cta { display: flex; align-items: center; gap: 14px; }
     .phone { font-weight: 600; font-size: 14px; white-space: nowrap; }
 
@@ -194,11 +323,11 @@
       font-weight: 600; font-size: 13px;
     }
     h1 {
-      margin: 18px 0 16px; font-size: clamp(34px, 6vw, 60px); line-height: 1.02; letter-spacing: -0.02em;
+      margin: 20px 0 18px; font-size: clamp(34px, 5.5vw, 56px); line-height: 1.06; letter-spacing: -0.025em; font-weight: 800;
     }
     .lead {
-      color: var(--muted); font-size: clamp(17px, 2.1vw, 20px); max-width: 58ch;
-      line-height: 1.55; margin: 0 0 28px;
+      color: var(--muted); font-size: clamp(17px, 2.1vw, 19px); max-width: 58ch;
+      line-height: 1.6; margin: 0 0 30px;
     }
     .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 22px; }
     .hero-meta {
@@ -207,6 +336,7 @@
     .meta-box {
       border: 1px solid var(--line); border-radius: 12px; padding: 14px;
       background: var(--card-bg);
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
     }
     .meta-box b { font-size: 22px; display: block; margin-bottom: 4px; }
     .meta-box span { font-size: 13px; color: var(--muted); }
@@ -223,15 +353,41 @@
     .field:focus { outline: none; border-color: #93c5fd; box-shadow: 0 0 0 4px rgba(59,130,246,.12); }
     .fineprint { margin: 10px 0 0; color: var(--fineprint); font-size: 12px; line-height: 1.4; }
 
+    /* ─── Form validation states ─── */
+    .field-wrap { position: relative; }
+    .field.valid {
+      border-color: var(--ok);
+      box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+    }
+    .field.invalid {
+      border-color: #ef4444;
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+    }
+    .field-error {
+      display: none;
+      font-size: 12px;
+      color: #ef4444;
+      margin-top: 4px;
+      padding-left: 2px;
+      line-height: 1.3;
+    }
+    .field.invalid + .field-error,
+    .field-wrap:has(.field.invalid) .field-error { display: block; }
+    .btn[disabled] {
+      opacity: 0.55;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+
     .section h2 {
-      margin: 0 0 14px; font-size: clamp(28px, 4vw, 42px); line-height: 1.08; letter-spacing: -0.02em;
+      margin: 0 0 16px; font-size: clamp(28px, 4vw, 42px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 800;
     }
     .section p.section-lead {
-      margin: 0; color: var(--muted); max-width: 70ch; line-height: 1.6;
+      margin: 0; color: var(--muted); max-width: 70ch; line-height: 1.65; font-size: 17px;
     }
 
     .problem-list, .benefit-list, .process-grid, .types-grid, .proof-grid {
-      margin-top: 28px; display: grid; gap: 14px;
+      margin-top: 36px; display: grid; gap: 16px;
     }
     .problem-list { grid-template-columns: repeat(3, 1fr); }
     .benefit-list { grid-template-columns: repeat(4, 1fr); }
@@ -245,7 +401,12 @@
 
     .card {
       background: var(--card-bg); border: 1px solid var(--line); border-radius: 14px; padding: 20px;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
       transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+    }
+    html[data-theme="light"] .card,
+    html:not([data-theme="dark"]) .card {
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
     }
 
     /* Break-grid размещение карточек типов + лёгкий overlap */
@@ -257,8 +418,8 @@
     @media (hover: hover) and (pointer: fine) {
       #types .types-grid > .card:hover { box-shadow: var(--shadow-lift); }
     }
-    .card h3 { margin: 0 0 8px; font-size: 19px; letter-spacing: -0.01em; }
-    .card p { margin: 0; color: var(--muted); line-height: 1.55; font-size: 15px; }
+    .card h3 { margin: 0 0 10px; font-size: 19px; letter-spacing: -0.01em; font-weight: 700; }
+    .card p { margin: 0; color: var(--muted); line-height: 1.6; font-size: 15px; }
 
     .media-placeholder {
       width: 100%;
@@ -436,6 +597,7 @@
     .check {
       border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; background: var(--check-bg);
       color: var(--check-text); font-size: 15px;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
     }
 
     .proof-quote {
@@ -462,18 +624,99 @@
     .cta-block h3 { margin: 0 0 8px; font-size: clamp(24px, 3vw, 34px); letter-spacing: -0.02em; }
     .cta-block p { margin: 0; color: #cbd5e1; max-width: 56ch; }
 
-    /* Микро-анимации появления секций */
+    /* ─── Animations & micro-interactions ─── */
+
+    /* Button press effect */
+    .btn { transition: transform 200ms ease, box-shadow 200ms ease, background 200ms ease, opacity 200ms ease; }
+    .btn:active:not([disabled]) { transform: scale(0.97) !important; }
+
+    /* Card subtle entrance */
     .reveal {
       opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 700ms ease, transform 700ms ease;
+      transform: translateY(18px);
+      transition: opacity 600ms cubic-bezier(0.22, 1, 0.36, 1), transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
     }
     .reveal.in-view {
       opacity: 1;
       transform: translateY(0);
     }
+
+    /* Staggered card reveals */
+    .reveal .card:nth-child(1),
+    .reveal .check:nth-child(1) { transition-delay: 0ms; }
+    .reveal .card:nth-child(2),
+    .reveal .check:nth-child(2) { transition-delay: 80ms; }
+    .reveal .card:nth-child(3),
+    .reveal .check:nth-child(3) { transition-delay: 160ms; }
+    .reveal .card:nth-child(4),
+    .reveal .check:nth-child(4) { transition-delay: 240ms; }
+
+    .reveal .card,
+    .reveal .check {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 500ms cubic-bezier(0.22, 1, 0.36, 1), transform 500ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 220ms ease, border-color 220ms ease;
+    }
+    .reveal.in-view .card,
+    .reveal.in-view .check {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Keep types-grid offset transforms on desktop */
+    @media (min-width: 1081px) {
+      .reveal.in-view #types .types-grid > .card:nth-child(2),
+      #types .reveal.in-view .card:nth-child(2) { transform: translateY(18px); }
+      #types .reveal.in-view .card:nth-child(3) { transform: translateY(-8px); }
+      #types .reveal.in-view .card:nth-child(4) { transform: translateY(10px); }
+    }
+
+    /* Focus ring for accessibility */
+    .field:focus-visible,
+    .btn:focus-visible,
+    .nav a:focus-visible,
+    .burger:focus-visible {
+      outline: 2px solid var(--brand);
+      outline-offset: 2px;
+    }
+
+    /* Badge pulse on card hover */
+    @media (hover: hover) and (pointer: fine) {
+      .card:hover .badge {
+        transform: scale(1.1);
+        transition: transform 250ms ease;
+      }
+    }
+
+    /* Eyebrow shimmer */
+    .eyebrow {
+      position: relative;
+      overflow: hidden;
+    }
+    .eyebrow::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 50%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      animation: eyebrow-shimmer 4s ease-in-out infinite;
+    }
+    @keyframes eyebrow-shimmer {
+      0%, 100% { left: -100%; }
+      50% { left: 150%; }
+    }
+
+    /* Meta-box counter animation placeholder */
+    .meta-box b {
+      transition: color 300ms ease;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .meta-box:hover b { color: var(--brand); }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .reveal { opacity: 1; transform: none; transition: none; }
+      .reveal .card, .reveal .check { opacity: 1; transform: none; transition: none; }
+      .eyebrow::before { animation: none; }
     }
 
     footer {
@@ -507,14 +750,81 @@
       .map-wrap { min-height: 280px; }
     }
 
+    /* ─── Burger menu ─── */
+    .burger {
+      display: none;
+      width: 40px; height: 40px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--ghost-bg);
+      cursor: pointer;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 0;
+      transition: transform 200ms ease;
+    }
+    .burger span {
+      display: block;
+      width: 18px; height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: transform 300ms ease, opacity 200ms ease;
+    }
+    .burger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .burger.active span:nth-child(2) { opacity: 0; }
+    .burger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 49;
+      padding-top: 62px;
+      background: var(--overlay);
+      backdrop-filter: blur(8px);
+      opacity: 0;
+      transition: opacity 300ms ease;
+    }
+    .mobile-nav.open {
+      display: flex;
+      flex-direction: column;
+      opacity: 1;
+    }
+    .mobile-nav-inner {
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+      padding: 16px 24px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .mobile-nav-inner a {
+      display: block;
+      padding: 14px 16px;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text);
+      border-radius: 12px;
+      transition: background 200ms ease, color 200ms ease;
+    }
+    .mobile-nav-inner a:hover,
+    .mobile-nav-inner a.active {
+      background: var(--badge-bg);
+      color: var(--brand);
+    }
+
     @media (max-width: 760px) {
       .nav { display: none; }
+      .burger { display: flex; }
       .topbar-inner { height: 62px; gap: 12px; }
       .brand { font-size: 14px; }
       .hero { padding: 28px 0 28px; }
       .hero-card, .form-card, .contact-card { padding: 22px; }
       .section { padding: 64px 0; }
       .top-cta { gap: 8px; }
+      .top-cta .topbar-cta-btn { display: none; }
       .top-cta .btn { padding: 10px 12px; font-size: 13px; }
       .theme-toggle { width: 44px; height: 28px; }
       .problem-list, .benefit-list { grid-template-columns: 1fr; }
@@ -548,21 +858,35 @@
         <a href="#problem">Проблема</a>
         <a href="#solution">Решение</a>
         <a href="#types">Типы ворот</a>
-        <a href="#gallery">Галерея</a>
         <a href="#process">Этапы</a>
+        <a href="#gallery">Галерея</a>
         <a href="#contact">Контакты</a>
       </nav>
       <div class="top-cta">
         <a class="phone" href="tel:+79219413351">+7 (921) 941-33-51</a>
-        <!-- соцкнопки убраны по запросу -->
         <div class="theme-control">
           <span class="theme-icon" id="themeIcon" aria-hidden="true">☀</span>
           <button class="theme-toggle" type="button" id="themeToggle" role="switch" aria-checked="false" aria-label="Переключить тему"></button>
         </div>
-        <a class="btn btn-primary" href="#lead-form">Получить расчет</a>
+        <a class="btn btn-primary topbar-cta-btn" href="#lead-form">Получить расчет</a>
+        <button class="burger" id="burger" type="button" aria-label="Открыть меню">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </div>
   </header>
+
+  <div class="mobile-nav" id="mobileNav">
+    <div class="mobile-nav-inner">
+      <a href="#problem">Проблема</a>
+      <a href="#solution">Решение</a>
+      <a href="#types">Типы ворот</a>
+      <a href="#process">Этапы</a>
+      <a href="#gallery">Галерея</a>
+      <a href="#contact">Контакты</a>
+      <a class="btn btn-primary" href="#lead-form" style="margin-top:8px; text-align:center;">Получить расчет</a>
+    </div>
+  </div>
 
   <main id="top">
     <section class="hero">
@@ -599,22 +923,37 @@
         <aside class="form-card surface" id="lead-form">
           <h2 class="form-title">Рассчитать стоимость</h2>
           <p class="form-sub">Оставьте контакты. Инженер перезвонит, уточнит задачу и подготовит понятный расчет без скрытых работ.</p>
-          <form class="form-grid" id="lead-form-form" onsubmit="event.preventDefault(); alert('Спасибо! Мы свяжемся с вами в ближайшее время.');">
-            <input class="field" type="text" placeholder="Имя" required />
-            <input class="field" type="tel" placeholder="Телефон" required />
-            <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-              <input class="field" type="text" placeholder="Ширина (м)" inputmode="decimal" />
-              <input class="field" type="text" placeholder="Длина (м)" inputmode="decimal" />
+          <form class="form-grid" id="lead-form-form">
+            <div class="field-wrap">
+              <input class="field" type="text" id="f-name" placeholder="Имя" required autocomplete="name" />
+              <div class="field-error">Минимум 2 буквы, без цифр</div>
             </div>
-            <select class="field" required id="gate-type" name="gate-type">
-              <option value="" disabled selected>Тип ворот</option>
-              <option value="Секционные">Секционные</option>
-              <option value="Складчатые">Складчатые</option>
-              <option value="Распашные">Распашные</option>
-              <option value="Скоростные">Скоростные</option>
-            </select>
+            <div class="field-wrap">
+              <input class="field" type="tel" id="f-phone" placeholder="+7 (___) ___-__-__" required autocomplete="tel" />
+              <div class="field-error">Введите номер из 11 цифр</div>
+            </div>
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+              <div class="field-wrap">
+                <input class="field" type="text" id="f-width" placeholder="Ширина (м)" inputmode="decimal" />
+                <div class="field-error">Только числа</div>
+              </div>
+              <div class="field-wrap">
+                <input class="field" type="text" id="f-height" placeholder="Высота (м)" inputmode="decimal" />
+                <div class="field-error">Только числа</div>
+              </div>
+            </div>
+            <div class="field-wrap">
+              <select class="field" required id="gate-type" name="gate-type">
+                <option value="" disabled selected>Тип ворот</option>
+                <option value="Секционные">Секционные</option>
+                <option value="Складчатые">Складчатые</option>
+                <option value="Распашные">Распашные</option>
+                <option value="Скоростные">Скоростные</option>
+              </select>
+              <div class="field-error">Выберите тип ворот</div>
+            </div>
             <textarea class="field" rows="4" placeholder="Кратко опишите объект (размер проема, режим работы, температура)"></textarea>
-            <button class="btn btn-primary" type="submit">Получить расчет за 24 часа</button>
+            <button class="btn btn-primary" type="submit" id="submitBtn">Получить расчет за 24 часа</button>
           </form>
           <p class="fineprint">Нажимая кнопку, вы соглашаетесь на обработку персональных данных.</p>
         </aside>
@@ -807,9 +1146,11 @@
           <div class="map-wrap" aria-label="Карта офиса в Санкт-Петербурге">
             <iframe
               loading="lazy"
-              src="https://maps.google.com/maps?q=59.864715,30.420980&z=15&output=embed"
+              src="https://yandex.ru/map-widget/v1/?ll=30.420980,59.864715&pt=30.420980,59.864715,pm2blm&z=16&l=map"
               title="Карта офиса в Санкт-Петербурге"
               aria-label="Карта офиса в Санкт-Петербурге"
+              allowfullscreen
+              style="border:0;"
             ></iframe>
           </div>
         </div>
@@ -846,16 +1187,16 @@
 
   <script>
     (function () {
-      // Theme: auto / light / dark (persist in localStorage)
+      /* ═══════════════════════════════════════
+         Theme: auto / light / dark
+         ═══════════════════════════════════════ */
       const root = document.documentElement;
       const toggle = document.getElementById('themeToggle');
       const key = 'prov-theme';
       const systemDark = () => window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-
       const icon = document.getElementById('themeIcon');
 
       const applyTheme = (mode) => {
-        // mode: 'auto' | 'light' | 'dark'
         if (mode === 'auto') {
           root.setAttribute('data-theme', systemDark() ? 'dark' : 'light');
         } else {
@@ -875,7 +1216,6 @@
       const saved = localStorage.getItem(key) || 'auto';
       applyTheme(saved);
 
-      // If system changes and we're in auto, update
       if (window.matchMedia) {
         const mq = window.matchMedia('(prefers-color-scheme: dark)');
         const handler = () => {
@@ -895,10 +1235,91 @@
         });
       }
 
-      const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const enableReveal = !reduce;
+      /* ═══════════════════════════════════════
+         Burger menu
+         ═══════════════════════════════════════ */
+      const burger = document.getElementById('burger');
+      const mobileNav = document.getElementById('mobileNav');
 
-      if (enableReveal) {
+      if (burger && mobileNav) {
+        burger.addEventListener('click', () => {
+          const isOpen = mobileNav.classList.contains('open');
+          if (isOpen) {
+            mobileNav.classList.remove('open');
+            burger.classList.remove('active');
+            burger.setAttribute('aria-label', 'Открыть меню');
+            document.body.style.overflow = '';
+          } else {
+            mobileNav.classList.add('open');
+            burger.classList.add('active');
+            burger.setAttribute('aria-label', 'Закрыть меню');
+            document.body.style.overflow = 'hidden';
+          }
+        });
+
+        // Close on link click
+        mobileNav.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            mobileNav.classList.remove('open');
+            burger.classList.remove('active');
+            document.body.style.overflow = '';
+          });
+        });
+
+        // Close on overlay click
+        mobileNav.addEventListener('click', (e) => {
+          if (e.target === mobileNav) {
+            mobileNav.classList.remove('open');
+            burger.classList.remove('active');
+            document.body.style.overflow = '';
+          }
+        });
+      }
+
+      /* ═══════════════════════════════════════
+         Scroll spy — active nav links
+         ═══════════════════════════════════════ */
+      const navLinks = document.querySelectorAll('.nav a, .mobile-nav-inner a:not(.btn)');
+      const sections = Array.from(document.querySelectorAll('section[id]'));
+
+      const updateActiveNav = () => {
+        const scrollY = window.scrollY + 120;
+        let currentId = '';
+
+        for (const section of sections) {
+          if (section.offsetTop <= scrollY) {
+            currentId = section.id;
+          }
+        }
+
+        navLinks.forEach(link => {
+          const href = link.getAttribute('href');
+          if (href === '#' + currentId) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+      };
+
+      let scrollTick = false;
+      window.addEventListener('scroll', () => {
+        if (!scrollTick) {
+          requestAnimationFrame(() => {
+            updateActiveNav();
+            scrollTick = false;
+          });
+          scrollTick = true;
+        }
+      }, { passive: true });
+      updateActiveNav();
+
+      /* ═══════════════════════════════════════
+         Reveal animations
+         ═══════════════════════════════════════ */
+      const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (!reduce) {
         const candidates = document.querySelectorAll(
           '.hero-card, .form-card, .solution-block, .proof-quote, .cta-block, main > section.section > .container'
         );
@@ -912,28 +1333,191 @@
               io.unobserve(entry.target);
             });
           },
-          { threshold: 0.12 }
+          { threshold: 0.1 }
         );
-
         candidates.forEach((el) => io.observe(el));
       }
 
-      // Кнопки "Оформить" подставляют выбранный тип в форму
+      /* ═══════════════════════════════════════
+         Type buttons → form
+         ═══════════════════════════════════════ */
       const gateTypeSelect = document.getElementById('gate-type');
       const leadAside = document.getElementById('lead-form');
       const typeButtons = document.querySelectorAll('.type-choose');
-      const behavior = reduce ? 'auto' : 'smooth';
+      const scrollBehavior = reduce ? 'auto' : 'smooth';
 
       typeButtons.forEach((btn) => {
         btn.addEventListener('click', () => {
           const type = btn.getAttribute('data-type');
-          if (gateTypeSelect && type) gateTypeSelect.value = type;
-          if (leadAside) leadAside.scrollIntoView({ behavior, block: 'start' });
+          if (gateTypeSelect && type) {
+            gateTypeSelect.value = type;
+            validateField(gateTypeSelect);
+          }
+          if (leadAside) leadAside.scrollIntoView({ behavior: scrollBehavior, block: 'start' });
           if (gateTypeSelect) gateTypeSelect.focus();
         });
       });
 
-      // Lightbox: клики по галерее и фото в типах
+      /* ═══════════════════════════════════════
+         Form validation + phone mask
+         ═══════════════════════════════════════ */
+      const form = document.getElementById('lead-form-form');
+      const submitBtn = document.getElementById('submitBtn');
+      const fName = document.getElementById('f-name');
+      const fPhone = document.getElementById('f-phone');
+      const fWidth = document.getElementById('f-width');
+      const fHeight = document.getElementById('f-height');
+
+      // Phone mask
+      const phoneMask = (value) => {
+        const digits = value.replace(/\D/g, '');
+        let d = digits;
+        if (d.startsWith('8') && d.length > 1) d = '7' + d.slice(1);
+        if (!d.startsWith('7') && d.length > 0) d = '7' + d;
+
+        let result = '';
+        if (d.length > 0) result = '+' + d[0];
+        if (d.length > 1) result += ' (' + d.slice(1, 4);
+        if (d.length > 4) result += ') ' + d.slice(4, 7);
+        if (d.length > 7) result += '-' + d.slice(7, 9);
+        if (d.length > 9) result += '-' + d.slice(9, 11);
+        return result;
+      };
+
+      if (fPhone) {
+        fPhone.addEventListener('input', (e) => {
+          const pos = e.target.selectionStart;
+          const before = e.target.value;
+          e.target.value = phoneMask(e.target.value);
+          // Try to keep cursor reasonable
+          if (e.target.value.length > before.length) {
+            e.target.setSelectionRange(pos + (e.target.value.length - before.length), pos + (e.target.value.length - before.length));
+          }
+        });
+        fPhone.addEventListener('focus', () => {
+          if (!fPhone.value) fPhone.value = '+7 (';
+        });
+        fPhone.addEventListener('blur', () => {
+          if (fPhone.value === '+7 (' || fPhone.value === '+7') fPhone.value = '';
+        });
+      }
+
+      // Validators
+      const validators = {
+        'f-name': (v) => /^[a-zA-Zа-яА-ЯёЁ\s-]{2,}$/.test(v.trim()),
+        'f-phone': (v) => v.replace(/\D/g, '').length === 11,
+        'f-width': (v) => v === '' || /^\d+([.,]\d+)?$/.test(v.trim()),
+        'f-height': (v) => v === '' || /^\d+([.,]\d+)?$/.test(v.trim()),
+        'gate-type': (v) => v !== '',
+      };
+
+      const touched = new Set();
+
+      function validateField(field) {
+        const id = field.id;
+        const validator = validators[id];
+        if (!validator) return true;
+
+        const value = field.value;
+        const isValid = validator(value);
+        const isEmpty = !value.trim();
+
+        // Only show invalid state if user has interacted
+        if (!touched.has(id)) {
+          field.classList.remove('valid', 'invalid');
+          return isValid;
+        }
+
+        if (isEmpty && !field.required) {
+          field.classList.remove('valid', 'invalid');
+          return true;
+        }
+
+        if (isValid && !isEmpty) {
+          field.classList.add('valid');
+          field.classList.remove('invalid');
+        } else if (!isEmpty || field.required) {
+          field.classList.add('invalid');
+          field.classList.remove('valid');
+        }
+
+        updateSubmitButton();
+        return isValid;
+      }
+
+      function updateSubmitButton() {
+        if (!submitBtn) return;
+        const nameOk = validators['f-name'](fName?.value || '');
+        const phoneOk = validators['f-phone'](fPhone?.value || '');
+        const typeOk = validators['gate-type'](gateTypeSelect?.value || '');
+        submitBtn.disabled = !(nameOk && phoneOk && typeOk);
+      }
+
+      // Attach listeners to all validated fields
+      [fName, fPhone, fWidth, fHeight, gateTypeSelect].forEach(field => {
+        if (!field) return;
+        field.addEventListener('blur', () => {
+          touched.add(field.id);
+          validateField(field);
+        });
+        field.addEventListener('input', () => {
+          if (touched.has(field.id)) validateField(field);
+        });
+        if (field.tagName === 'SELECT') {
+          field.addEventListener('change', () => {
+            touched.add(field.id);
+            validateField(field);
+          });
+        }
+      });
+
+      // Initial button state
+      updateSubmitButton();
+
+      // Form submit
+      if (form) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+
+          // Mark all required as touched
+          [fName, fPhone, gateTypeSelect].forEach(f => {
+            if (f) {
+              touched.add(f.id);
+              validateField(f);
+            }
+          });
+
+          const nameOk = validators['f-name'](fName?.value || '');
+          const phoneOk = validators['f-phone'](fPhone?.value || '');
+          const typeOk = validators['gate-type'](gateTypeSelect?.value || '');
+
+          if (!nameOk || !phoneOk || !typeOk) {
+            // Focus first invalid
+            if (!nameOk && fName) fName.focus();
+            else if (!phoneOk && fPhone) fPhone.focus();
+            else if (!typeOk && gateTypeSelect) gateTypeSelect.focus();
+            return;
+          }
+
+          // Success
+          submitBtn.textContent = 'Отправлено!';
+          submitBtn.style.background = 'var(--ok)';
+          setTimeout(() => {
+            submitBtn.textContent = 'Получить расчет за 24 часа';
+            submitBtn.style.background = '';
+            form.reset();
+            [fName, fPhone, fWidth, fHeight, gateTypeSelect].forEach(f => {
+              if (f) f.classList.remove('valid', 'invalid');
+            });
+            touched.clear();
+            updateSubmitButton();
+          }, 2500);
+        });
+      }
+
+      /* ═══════════════════════════════════════
+         Lightbox
+         ═══════════════════════════════════════ */
       const lightbox = document.getElementById('lightbox');
       const lbTitle = document.getElementById('lightboxTitle');
       const lbMedia = document.getElementById('lightboxMedia');
@@ -954,21 +1538,18 @@
 
         lbMedia.innerHTML = '';
         const box = document.createElement('div');
-
-        // Если позже замените на background-image, lightbox подхватит его автоматически
         const bg = getComputedStyle(el).backgroundImage;
         if (bg && bg !== 'none') box.style.backgroundImage = bg;
         box.style.backgroundSize = 'cover';
         box.style.backgroundPosition = 'center';
         box.style.backgroundRepeat = 'no-repeat';
-
         lbMedia.appendChild(box);
 
         lbPrev.disabled = current <= 0;
         lbNext.disabled = current >= clickable.length - 1;
       };
 
-      const open = (idx) => {
+      const openLb = (idx) => {
         lastActive = document.activeElement;
         current = Math.max(0, Math.min(clickable.length - 1, idx));
         render();
@@ -978,40 +1559,30 @@
         lbClose.focus();
       };
 
-      const close = () => {
+      const closeLb = () => {
         lightbox.classList.remove('open');
         lightbox.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
         if (lastActive && typeof lastActive.focus === 'function') lastActive.focus();
       };
 
-      const prev = () => {
-        if (current <= 0) return;
-        current -= 1;
-        render();
-      };
-      const next = () => {
-        if (current >= clickable.length - 1) return;
-        current += 1;
-        render();
-      };
+      const prevLb = () => { if (current > 0) { current--; render(); } };
+      const nextLb = () => { if (current < clickable.length - 1) { current++; render(); } };
 
       clickable.forEach((el) => {
         el.style.cursor = 'zoom-in';
-        el.addEventListener('click', () => open(Number(el.getAttribute('data-lb-idx') || '0')));
+        el.addEventListener('click', () => openLb(Number(el.getAttribute('data-lb-idx') || '0')));
       });
 
-      lbClose.addEventListener('click', close);
-      lbPrev.addEventListener('click', prev);
-      lbNext.addEventListener('click', next);
-      lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) close();
-      });
+      lbClose.addEventListener('click', closeLb);
+      lbPrev.addEventListener('click', prevLb);
+      lbNext.addEventListener('click', nextLb);
+      lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLb(); });
       document.addEventListener('keydown', (e) => {
         if (!lightbox.classList.contains('open')) return;
-        if (e.key === 'Escape') close();
-        if (e.key === 'ArrowLeft') prev();
-        if (e.key === 'ArrowRight') next();
+        if (e.key === 'Escape') closeLb();
+        if (e.key === 'ArrowLeft') prevLb();
+        if (e.key === 'ArrowRight') nextLb();
       });
     })();
   </script>
