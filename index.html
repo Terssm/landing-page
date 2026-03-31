@@ -458,6 +458,18 @@
       }
     }
 
+    .calc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+    .calc-features {
+      margin-top: 28px;
+      display: grid;
+      gap: 10px;
+    }
+
     .contacts-grid {
       margin-top: 28px;
       display: grid;
@@ -752,6 +764,7 @@
       .cta-block { grid-template-columns: 1fr; }
       .top-cta .phone { display: none; }
       .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+      .calc-grid { grid-template-columns: 1fr; }
       .contacts-grid { grid-template-columns: 1fr; }
       .map-wrap { min-height: 280px; }
     }
@@ -867,6 +880,7 @@
         <a href="#solution">Решение</a>
         <a href="#types">Типы ворот</a>
         <a href="#process">Этапы</a>
+        <a href="#calc-form">Расчёт</a>
         <a href="#gallery">Галерея</a>
         <a href="#contact">Контакты</a>
       </nav>
@@ -876,7 +890,7 @@
           <span class="theme-icon" id="themeIcon" aria-hidden="true">☀</span>
           <button class="theme-toggle" type="button" id="themeToggle" role="switch" aria-checked="false" aria-label="Переключить тему"></button>
         </div>
-        <a class="btn btn-primary topbar-cta-btn" href="#lead-form">Получить расчет</a>
+        <a class="btn btn-primary topbar-cta-btn" href="#lead-form">Обсудить проект</a>
         <button class="burger" id="burger" type="button" aria-label="Открыть меню">
           <span></span><span></span><span></span>
         </button>
@@ -890,9 +904,10 @@
       <a href="#solution">Решение</a>
       <a href="#types">Типы ворот</a>
       <a href="#process">Этапы</a>
+      <a href="#calc-form">Расчёт</a>
       <a href="#gallery">Галерея</a>
       <a href="#contact">Контакты</a>
-      <a class="btn btn-primary" href="#lead-form" style="margin-top:8px; text-align:center;">Получить расчет</a>
+      <a class="btn btn-primary" href="#lead-form" style="margin-top:8px; text-align:center;">Обсудить проект</a>
     </div>
   </div>
 
@@ -929,41 +944,39 @@
         </div>
 
         <aside class="form-card surface" id="lead-form">
-          <h2 class="form-title">Рассчитать стоимость</h2>
-          <p class="form-sub">Оставьте контакты. Инженер перезвонит, уточнит задачу и подготовит понятный расчет без скрытых работ.</p>
-          <form class="form-grid" id="lead-form-form">
+          <h2 class="form-title">Обсудить проект</h2>
+          <p class="form-sub">Расскажите о задаче — подготовим решение и коммерческое предложение за 24 часа.</p>
+          <form class="form-grid" id="b2b-form">
             <div class="field-wrap">
-              <input class="field" type="text" id="f-name" placeholder="Имя" required autocomplete="name" />
-              <div class="field-error">Минимум 2 буквы, без цифр</div>
+              <input class="field" type="text" id="b2b-company" placeholder="Название компании" required />
+              <div class="field-error">Введите название компании</div>
             </div>
             <div class="field-wrap">
-              <input class="field" type="tel" id="f-phone" placeholder="+7 (___) ___-__-__" required autocomplete="tel" />
+              <input class="field" type="text" id="b2b-contact" placeholder="Контактное лицо" required autocomplete="name" />
+              <div class="field-error">Минимум 2 буквы</div>
+            </div>
+            <div class="field-wrap">
+              <input class="field" type="tel" id="b2b-phone" placeholder="+7 (___) ___-__-__" required autocomplete="tel" />
               <div class="field-error">Введите номер из 11 цифр</div>
             </div>
-            <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-              <div class="field-wrap">
-                <input class="field" type="text" id="f-width" placeholder="Ширина (м)" inputmode="decimal" />
-                <div class="field-error">Только числа</div>
-              </div>
-              <div class="field-wrap">
-                <input class="field" type="text" id="f-height" placeholder="Высота (м)" inputmode="decimal" />
-                <div class="field-error">Только числа</div>
-              </div>
+            <div class="field-wrap">
+              <input class="field" type="email" id="b2b-email" placeholder="Email (необязательно)" autocomplete="email" />
+              <div class="field-error">Введите корректный email</div>
             </div>
             <div class="field-wrap">
-              <select class="field" required id="gate-type" name="gate-type">
-                <option value="" disabled selected>Тип ворот</option>
-                <option value="Секционные">Секционные</option>
-                <option value="Складчатые">Складчатые</option>
-                <option value="Распашные">Распашные</option>
-                <option value="Скоростные">Скоростные</option>
-                <option value="Спиральные">Спиральные</option>
-                <option value="Индивидуальные">Индивидуальные</option>
+              <select class="field" required id="b2b-object" name="object-type">
+                <option value="" disabled selected>Тип объекта</option>
+                <option value="Склад">Склад</option>
+                <option value="Цех / производство">Цех / производство</option>
+                <option value="Логистический центр">Логистический центр</option>
+                <option value="Ангар">Ангар</option>
+                <option value="Автосервис / мойка">Автосервис / мойка</option>
+                <option value="Другое">Другое</option>
               </select>
-              <div class="field-error">Выберите тип ворот</div>
+              <div class="field-error">Выберите тип объекта</div>
             </div>
-            <textarea class="field" rows="4" placeholder="Кратко опишите объект (размер проема, режим работы, температура)"></textarea>
-            <button class="btn btn-primary" type="submit" id="submitBtn">Получить расчет за 24 часа</button>
+            <textarea class="field" rows="3" placeholder="Опишите задачу: количество проемов, режим работы, сроки"></textarea>
+            <button class="btn btn-primary" type="submit" id="b2b-submit">Получить предложение</button>
           </form>
           <p class="fineprint">Нажимая кнопку, вы соглашаетесь на обработку персональных данных.</p>
         </aside>
@@ -1100,7 +1113,62 @@
             <h3>Нужен расчет под ваш объект?</h3>
             <p>Оставьте заявку — в течение 24 часов получите коммерческое предложение с понятной стоимостью, сроками и комплектацией.</p>
           </div>
-          <a class="btn btn-primary" href="#lead-form">Оставить заявку</a>
+          <a class="btn btn-primary" href="#calc-form">Оставить заявку</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="calc-form">
+      <div class="container">
+        <div class="calc-grid">
+          <div>
+            <h2>Рассчитать стоимость для частного объекта</h2>
+            <p class="section-lead">Нужны ворота для гаража, дома или небольшого объекта? Оставьте параметры — рассчитаем за 24 часа.</p>
+            <div class="calc-features">
+              <div class="check">Точный расчет без скрытых работ</div>
+              <div class="check">Подбор оптимального типа ворот</div>
+              <div class="check">Замер, доставка и монтаж под ключ</div>
+            </div>
+          </div>
+          <aside class="form-card surface">
+            <h3 class="form-title">Оставьте параметры</h3>
+            <p class="form-sub">Инженер перезвонит, уточнит детали и подготовит расчет.</p>
+            <form class="form-grid" id="b2c-form">
+              <div class="field-wrap">
+                <input class="field" type="text" id="b2c-name" placeholder="Имя" required autocomplete="name" />
+                <div class="field-error">Минимум 2 буквы, без цифр</div>
+              </div>
+              <div class="field-wrap">
+                <input class="field" type="tel" id="b2c-phone" placeholder="+7 (___) ___-__-__" required autocomplete="tel" />
+                <div class="field-error">Введите номер из 11 цифр</div>
+              </div>
+              <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <div class="field-wrap">
+                  <input class="field" type="text" id="b2c-width" placeholder="Ширина (м)" inputmode="decimal" />
+                  <div class="field-error">Только числа</div>
+                </div>
+                <div class="field-wrap">
+                  <input class="field" type="text" id="b2c-height" placeholder="Высота (м)" inputmode="decimal" />
+                  <div class="field-error">Только числа</div>
+                </div>
+              </div>
+              <div class="field-wrap">
+                <select class="field" required id="b2c-gate-type" name="gate-type">
+                  <option value="" disabled selected>Тип ворот</option>
+                  <option value="Секционные">Секционные</option>
+                  <option value="Складчатые">Складчатые</option>
+                  <option value="Распашные">Распашные</option>
+                  <option value="Скоростные">Скоростные</option>
+                  <option value="Спиральные">Спиральные</option>
+                  <option value="Индивидуальные">Индивидуальные</option>
+                </select>
+                <div class="field-error">Выберите тип ворот</div>
+              </div>
+              <textarea class="field" rows="3" placeholder="Комментарий (необязательно)"></textarea>
+              <button class="btn btn-primary" type="submit" id="b2c-submit">Рассчитать стоимость</button>
+            </form>
+            <p class="fineprint">Нажимая кнопку, вы соглашаетесь на обработку персональных данных.</p>
+          </aside>
         </div>
       </div>
     </section>
@@ -1365,42 +1433,15 @@
       }
 
       /* ═══════════════════════════════════════
-         Type buttons → form
+         Phone mask utility
          ═══════════════════════════════════════ */
-      const gateTypeSelect = document.getElementById('gate-type');
-      const leadAside = document.getElementById('lead-form');
-      const typeButtons = document.querySelectorAll('.type-choose');
       const scrollBehavior = reduce ? 'auto' : 'smooth';
 
-      typeButtons.forEach((btn) => {
-        btn.addEventListener('click', () => {
-          const type = btn.getAttribute('data-type');
-          if (gateTypeSelect && type) {
-            gateTypeSelect.value = type;
-            validateField(gateTypeSelect);
-          }
-          if (leadAside) leadAside.scrollIntoView({ behavior: scrollBehavior, block: 'start' });
-          if (gateTypeSelect) gateTypeSelect.focus();
-        });
-      });
-
-      /* ═══════════════════════════════════════
-         Form validation + phone mask
-         ═══════════════════════════════════════ */
-      const form = document.getElementById('lead-form-form');
-      const submitBtn = document.getElementById('submitBtn');
-      const fName = document.getElementById('f-name');
-      const fPhone = document.getElementById('f-phone');
-      const fWidth = document.getElementById('f-width');
-      const fHeight = document.getElementById('f-height');
-
-      // Phone mask
       const phoneMask = (value) => {
         const digits = value.replace(/\D/g, '');
         let d = digits;
         if (d.startsWith('8') && d.length > 1) d = '7' + d.slice(1);
         if (!d.startsWith('7') && d.length > 0) d = '7' + d;
-
         let result = '';
         if (d.length > 0) result = '+' + d[0];
         if (d.length > 1) result += ' (' + d.slice(1, 4);
@@ -1410,136 +1451,159 @@
         return result;
       };
 
-      if (fPhone) {
-        fPhone.addEventListener('input', (e) => {
+      const attachPhoneMask = (el) => {
+        if (!el) return;
+        el.addEventListener('input', (e) => {
           const pos = e.target.selectionStart;
           const before = e.target.value;
           e.target.value = phoneMask(e.target.value);
-          // Try to keep cursor reasonable
           if (e.target.value.length > before.length) {
             e.target.setSelectionRange(pos + (e.target.value.length - before.length), pos + (e.target.value.length - before.length));
           }
         });
-        fPhone.addEventListener('focus', () => {
-          if (!fPhone.value) fPhone.value = '+7 (';
-        });
-        fPhone.addEventListener('blur', () => {
-          if (fPhone.value === '+7 (' || fPhone.value === '+7') fPhone.value = '';
-        });
-      }
-
-      // Validators
-      const validators = {
-        'f-name': (v) => /^[a-zA-Zа-яА-ЯёЁ\s-]{2,}$/.test(v.trim()),
-        'f-phone': (v) => v.replace(/\D/g, '').length === 11,
-        'f-width': (v) => v === '' || /^\d+([.,]\d+)?$/.test(v.trim()),
-        'f-height': (v) => v === '' || /^\d+([.,]\d+)?$/.test(v.trim()),
-        'gate-type': (v) => v !== '',
+        el.addEventListener('focus', () => { if (!el.value) el.value = '+7 ('; });
+        el.addEventListener('blur', () => { if (el.value === '+7 (' || el.value === '+7') el.value = ''; });
       };
 
-      const touched = new Set();
+      /* ═══════════════════════════════════════
+         Generic form validation engine
+         ═══════════════════════════════════════ */
+      function initForm({ formId, submitId, fields, requiredIds, successText, defaultText }) {
+        const form = document.getElementById(formId);
+        const submitBtn = document.getElementById(submitId);
+        if (!form || !submitBtn) return;
 
-      function validateField(field) {
-        const id = field.id;
-        const validator = validators[id];
-        if (!validator) return true;
+        const touched = new Set();
+        const els = {};
+        const validators = {};
 
-        const value = field.value;
-        const isValid = validator(value);
-        const isEmpty = !value.trim();
+        fields.forEach(f => {
+          els[f.id] = document.getElementById(f.id);
+          validators[f.id] = f.validate;
+        });
 
-        // Only show invalid state if user has interacted
-        if (!touched.has(id)) {
-          field.classList.remove('valid', 'invalid');
+        function validateField(field) {
+          const id = field.id;
+          const validator = validators[id];
+          if (!validator) return true;
+          const value = field.value;
+          const isValid = validator(value);
+          const isEmpty = !value.trim();
+
+          if (!touched.has(id)) { field.classList.remove('valid', 'invalid'); return isValid; }
+          if (isEmpty && !field.required) { field.classList.remove('valid', 'invalid'); return true; }
+
+          if (isValid && !isEmpty) { field.classList.add('valid'); field.classList.remove('invalid'); }
+          else if (!isEmpty || field.required) { field.classList.add('invalid'); field.classList.remove('valid'); }
+
+          updateBtn();
           return isValid;
         }
 
-        if (isEmpty && !field.required) {
-          field.classList.remove('valid', 'invalid');
-          return true;
+        function updateBtn() {
+          const allOk = requiredIds.every(id => validators[id] ? validators[id](els[id]?.value || '') : true);
+          submitBtn.disabled = !allOk;
         }
 
-        if (isValid && !isEmpty) {
-          field.classList.add('valid');
-          field.classList.remove('invalid');
-        } else if (!isEmpty || field.required) {
-          field.classList.add('invalid');
-          field.classList.remove('valid');
-        }
-
-        updateSubmitButton();
-        return isValid;
-      }
-
-      function updateSubmitButton() {
-        if (!submitBtn) return;
-        const nameOk = validators['f-name'](fName?.value || '');
-        const phoneOk = validators['f-phone'](fPhone?.value || '');
-        const typeOk = validators['gate-type'](gateTypeSelect?.value || '');
-        submitBtn.disabled = !(nameOk && phoneOk && typeOk);
-      }
-
-      // Attach listeners to all validated fields
-      [fName, fPhone, fWidth, fHeight, gateTypeSelect].forEach(field => {
-        if (!field) return;
-        field.addEventListener('blur', () => {
-          touched.add(field.id);
-          validateField(field);
+        fields.forEach(f => {
+          const el = els[f.id];
+          if (!el) return;
+          el.addEventListener('blur', () => { touched.add(el.id); validateField(el); });
+          el.addEventListener('input', () => { if (touched.has(el.id)) validateField(el); });
+          if (el.tagName === 'SELECT') el.addEventListener('change', () => { touched.add(el.id); validateField(el); });
         });
-        field.addEventListener('input', () => {
-          if (touched.has(field.id)) validateField(field);
-        });
-        if (field.tagName === 'SELECT') {
-          field.addEventListener('change', () => {
-            touched.add(field.id);
-            validateField(field);
-          });
-        }
-      });
 
-      // Initial button state
-      updateSubmitButton();
+        updateBtn();
 
-      // Form submit
-      if (form) {
         form.addEventListener('submit', (e) => {
           e.preventDefault();
-
-          // Mark all required as touched
-          [fName, fPhone, gateTypeSelect].forEach(f => {
-            if (f) {
-              touched.add(f.id);
-              validateField(f);
-            }
-          });
-
-          const nameOk = validators['f-name'](fName?.value || '');
-          const phoneOk = validators['f-phone'](fPhone?.value || '');
-          const typeOk = validators['gate-type'](gateTypeSelect?.value || '');
-
-          if (!nameOk || !phoneOk || !typeOk) {
-            // Focus first invalid
-            if (!nameOk && fName) fName.focus();
-            else if (!phoneOk && fPhone) fPhone.focus();
-            else if (!typeOk && gateTypeSelect) gateTypeSelect.focus();
+          requiredIds.forEach(id => { if (els[id]) { touched.add(id); validateField(els[id]); } });
+          const allOk = requiredIds.every(id => validators[id] ? validators[id](els[id]?.value || '') : true);
+          if (!allOk) {
+            const first = requiredIds.find(id => validators[id] && !validators[id](els[id]?.value || ''));
+            if (first && els[first]) els[first].focus();
             return;
           }
-
-          // Success
           submitBtn.textContent = 'Отправлено!';
           submitBtn.style.background = 'var(--ok)';
           setTimeout(() => {
-            submitBtn.textContent = 'Получить расчет за 24 часа';
+            submitBtn.textContent = defaultText;
             submitBtn.style.background = '';
             form.reset();
-            [fName, fPhone, fWidth, fHeight, gateTypeSelect].forEach(f => {
-              if (f) f.classList.remove('valid', 'invalid');
-            });
+            fields.forEach(f => { if (els[f.id]) els[f.id].classList.remove('valid', 'invalid'); });
             touched.clear();
-            updateSubmitButton();
+            updateBtn();
           }, 2500);
         });
+
+        return { validateField, els };
       }
+
+      /* ═══════════════════════════════════════
+         B2B form (hero)
+         ═══════════════════════════════════════ */
+      const nameRe = /^[a-zA-Zа-яА-ЯёЁ\s-]{2,}$/;
+      const phoneOk = (v) => v.replace(/\D/g, '').length === 11;
+      const emailOk = (v) => v === '' || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
+      const notEmpty = (v) => v !== '';
+      const textMin2 = (v) => v.trim().length >= 2;
+
+      attachPhoneMask(document.getElementById('b2b-phone'));
+
+      initForm({
+        formId: 'b2b-form',
+        submitId: 'b2b-submit',
+        fields: [
+          { id: 'b2b-company', validate: textMin2 },
+          { id: 'b2b-contact', validate: (v) => nameRe.test(v.trim()) },
+          { id: 'b2b-phone', validate: phoneOk },
+          { id: 'b2b-email', validate: emailOk },
+          { id: 'b2b-object', validate: notEmpty },
+        ],
+        requiredIds: ['b2b-company', 'b2b-contact', 'b2b-phone', 'b2b-object'],
+        successText: 'Отправлено!',
+        defaultText: 'Получить предложение',
+      });
+
+      /* ═══════════════════════════════════════
+         B2C form (calc section)
+         ═══════════════════════════════════════ */
+      attachPhoneMask(document.getElementById('b2c-phone'));
+
+      const numOk = (v) => v === '' || /^\d+([.,]\d+)?$/.test(v.trim());
+
+      const b2c = initForm({
+        formId: 'b2c-form',
+        submitId: 'b2c-submit',
+        fields: [
+          { id: 'b2c-name', validate: (v) => nameRe.test(v.trim()) },
+          { id: 'b2c-phone', validate: phoneOk },
+          { id: 'b2c-width', validate: numOk },
+          { id: 'b2c-height', validate: numOk },
+          { id: 'b2c-gate-type', validate: notEmpty },
+        ],
+        requiredIds: ['b2c-name', 'b2c-phone', 'b2c-gate-type'],
+        successText: 'Отправлено!',
+        defaultText: 'Рассчитать стоимость',
+      });
+
+      /* ═══════════════════════════════════════
+         Type buttons → B2C form
+         ═══════════════════════════════════════ */
+      const b2cGateType = document.getElementById('b2c-gate-type');
+      const calcSection = document.getElementById('calc-form');
+      const typeButtons = document.querySelectorAll('.type-choose');
+
+      typeButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const type = btn.getAttribute('data-type');
+          if (b2cGateType && type) {
+            b2cGateType.value = type;
+            if (b2c) b2c.validateField(b2cGateType);
+          }
+          if (calcSection) calcSection.scrollIntoView({ behavior: scrollBehavior, block: 'start' });
+        });
+      });
 
       /* ═══════════════════════════════════════
          Lightbox
