@@ -18,7 +18,7 @@
       --ok: #059669;
       --radius: 18px;
       --shadow: 0 10px 30px rgba(26, 26, 26, 0.1);
-      --container: 1160px;
+      --container: 1280px;
 
       --topbar-bg: rgba(250, 250, 248, 0.88);
       --ghost-bg: #fff;
@@ -240,7 +240,7 @@
     html { scroll-behavior: smooth; }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
-    .nav { display: flex; gap: 22px; color: var(--muted); font-weight: 500; font-size: 14px; }
+    .nav { display: flex; gap: 16px; color: var(--muted); font-weight: 500; font-size: 13px; white-space: nowrap; }
     .nav a {
       position: relative;
       padding: 4px 0;
@@ -258,7 +258,7 @@
     .nav a:hover { color: var(--text); }
     .nav a.active { color: var(--brand); }
     .nav a.active::after { width: 100%; }
-    .top-cta { display: flex; align-items: center; gap: 14px; }
+    .top-cta { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
     .phone { font-weight: 600; font-size: 14px; white-space: nowrap; }
 
     .theme-control {
@@ -666,6 +666,7 @@
     .reveal .check:nth-child(3) { transition-delay: 160ms; }
     .reveal .card:nth-child(4),
     .reveal .check:nth-child(4) { transition-delay: 240ms; }
+    .reveal .check:nth-child(5) { transition-delay: 320ms; }
 
     .reveal .card,
     .reveal .check {
@@ -749,6 +750,30 @@
       border-top: 1px solid var(--line); padding-top: 24px;
     }
 
+    /* ─── Partners section ─── */
+    .partner-steps {
+      margin-top: 36px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .partner-benefits,
+    .process-benefits {
+      margin-top: 28px;
+      padding: 28px;
+    }
+    .partner-benefits-title {
+      margin: 0 0 18px;
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .partner-checks {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
     @media (max-width: 1080px) {
       .hero-grid { grid-template-columns: 1fr; }
       .problem-list { grid-template-columns: 1fr 1fr; }
@@ -761,6 +786,7 @@
       #types .types-grid > .card:nth-child(5),
       #types .types-grid > .card:nth-child(6) { grid-column: auto; transform: none; }
       .proof-grid, .process-grid, .solution-block, .proof-quote { grid-template-columns: 1fr; }
+      .partner-steps, .partner-checks { grid-template-columns: 1fr 1fr; }
       .cta-block { grid-template-columns: 1fr; }
       .top-cta .phone { display: none; }
       .gallery-grid { grid-template-columns: repeat(3, 1fr); }
@@ -858,6 +884,7 @@
       #types .types-grid > .card:nth-child(5),
       #types .types-grid > .card:nth-child(6) { transform: none; }
       .proof-grid, .process-grid, .solution-block, .proof-quote { grid-template-columns: 1fr; }
+      .partner-steps, .partner-checks { grid-template-columns: 1fr; }
       .cta-block { grid-template-columns: 1fr; }
       .gallery-grid { grid-template-columns: repeat(2, 1fr); }
       .contacts-grid { grid-template-columns: 1fr; }
@@ -1059,10 +1086,11 @@
         PROVOROTA
       </a>
       <nav class="nav">
+        <a href="#partners">Партнёрам</a>
         <a href="#problem">Проблема</a>
         <a href="#solution">Решение</a>
         <a href="#types">Типы ворот</a>
-        <a href="#process">Этапы</a>
+        <a href="#process">Сотрудничество</a>
         <a href="#calc-form">Расчёт</a>
         <a href="#gallery">Галерея</a>
         <a href="#contact">Контакты</a>
@@ -1083,10 +1111,11 @@
 
   <div class="mobile-nav" id="mobileNav">
     <div class="mobile-nav-inner">
+      <a href="#partners">Партнёрам</a>
       <a href="#problem">Проблема</a>
       <a href="#solution">Решение</a>
       <a href="#types">Типы ворот</a>
-      <a href="#process">Этапы</a>
+      <a href="#process">Сотрудничество</a>
       <a href="#calc-form">Расчёт</a>
       <a href="#gallery">Галерея</a>
       <a href="#contact">Контакты</a>
@@ -1163,6 +1192,47 @@
           </form>
           <p class="fineprint">Нажимая кнопку, вы соглашаетесь на обработку персональных данных.</p>
         </aside>
+      </div>
+    </section>
+
+    <section class="section" id="partners">
+      <div class="container">
+        <h2>Как стать партнёром</h2>
+        <p class="section-lead">Начинаем сотрудничество быстро и без лишних этапов. Для новых дилеров — полная поддержка на старте.</p>
+
+        <div class="partner-steps">
+          <article class="card">
+            <div class="badge">1</div>
+            <h3>Оставьте заявку</h3>
+            <p>Заполните форму или позвоните. Укажите формат: оптовые закупки, регулярные поставки или разовый проект.</p>
+          </article>
+          <article class="card">
+            <div class="badge">2</div>
+            <h3>Презентация и условия</h3>
+            <p>Покажем продукт, логистику и маркетинговую поддержку. Передадим каталоги, сертификаты и коммерческое предложение.</p>
+          </article>
+          <article class="card">
+            <div class="badge">3</div>
+            <h3>Договор на прозрачных условиях</h3>
+            <p>Подготовим индивидуальные условия под ваш объём и регулярность закупок. Подпишем дилерский договор.</p>
+          </article>
+          <article class="card">
+            <div class="badge">4</div>
+            <h3>Старт поставок</h3>
+            <p>После первого заказа передаём рекламные материалы, обучаем персонал и сопровождаем от производства до отгрузки.</p>
+          </article>
+        </div>
+
+        <div class="partner-benefits surface">
+          <h3 class="partner-benefits-title">Преимущества работы с нами</h3>
+          <div class="partner-checks">
+            <div class="check">Производство под заказ от 1 до 3 недель — сроки зависят от сложности и загруженности завода</div>
+            <div class="check">Продукция белорусского производителя RITERNA — проверенное качество и надёжность</div>
+            <div class="check">Полная сертификация и документация для конечных заказчиков</div>
+            <div class="check">Маркетинговая поддержка: каталоги, макеты, консультации по продажам</div>
+            <div class="check">Стабильное наличие комплектующих и гарантийное обслуживание</div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1282,13 +1352,29 @@
 
     <section class="section" id="process">
       <div class="container">
-        <h2>Как проходит работа</h2>
-        <p class="section-lead">Прозрачный процесс без сюрпризов и потери времени.</p>
+        <h2>Как мы работаем с партнёрами</h2>
+        <p class="section-lead">Выстраиваем прозрачное и надёжное сотрудничество для дилеров и оптовых клиентов.</p>
         <div class="process-grid">
-          <article class="card"><div class="badge">1</div><h3>Бриф 15 минут</h3><p>Уточняем задачу, режим объекта и ограничения.</p></article>
-          <article class="card"><div class="badge">2</div><h3>Замер и ТЗ</h3><p>Инженер выезжает, фиксирует параметры и риски.</p></article>
-          <article class="card"><div class="badge">3</div><h3>Расчет и договор</h3><p>Даем финальную смету, сроки и комплектацию.</p></article>
-          <article class="card"><div class="badge">4</div><h3>Монтаж и запуск</h3><p>Устанавливаем, настраиваем, передаем в эксплуатацию.</p></article>
+          <article class="card">
+            <div class="badge">1</div>
+            <h3>Запрос и консультация</h3>
+            <p>Принимаем заявку, уточняем комплектацию, сроки и условия поставки. Предоставляем актуальные цены, сертификацию и сроки производства.</p>
+          </article>
+          <article class="card">
+            <div class="badge">2</div>
+            <h3>Коммерческое предложение</h3>
+            <p>Готовим индивидуальное КП с детальной спецификацией. Подписываем договор поставки на прозрачных условиях.</p>
+          </article>
+          <article class="card">
+            <div class="badge">3</div>
+            <h3>Производство и отгрузка</h3>
+            <p>Запускаем заказ в производство — от 1 до 3 недель. Отгружаем со склада в Санкт-Петербурге с полным пакетом закрывающих документов.</p>
+          </article>
+          <article class="card">
+            <div class="badge">4</div>
+            <h3>Поддержка и сервис</h3>
+            <p>Передаём рекламные материалы, каталоги и обучение. Сопровождаем по гарантии и обеспечиваем наличие комплектующих.</p>
+          </article>
         </div>
 
         <div class="cta-block" id="cta-contact">
@@ -1615,6 +1701,11 @@
           if (section.offsetTop <= scrollY) {
             currentId = section.id;
           }
+        }
+
+        // If scrolled to the very bottom, activate the last section
+        if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 2) {
+          currentId = sections[sections.length - 1].id;
         }
 
         navLinks.forEach(link => {
