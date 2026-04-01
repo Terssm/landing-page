@@ -433,6 +433,8 @@
       border: 1px solid #333;
       margin-bottom: 12px;
       transition: transform 220ms ease;
+      object-fit: cover;
+      display: block;
     }
     @media (hover: hover) and (pointer: fine) {
       .card:hover .media-placeholder { transform: scale(1.03); }
@@ -450,6 +452,9 @@
       background: #1a1a1a;
       border: 1px solid #333;
       transition: transform 220ms ease, box-shadow 220ms ease;
+      object-fit: cover;
+      display: block;
+      width: 100%;
     }
     @media (hover: hover) and (pointer: fine) {
       .gallery-item:hover {
@@ -1299,7 +1304,7 @@
         <p class="section-lead">Каждый тип решает свою задачу. Подскажем оптимальный вариант после короткого брифа.</p>
         <div class="types-grid">
           <article class="card">
-            <div class="media-placeholder" role="img" aria-label="Фото секционных ворот"></div>
+            <img class="media-placeholder" src="img/Seck.jpg" alt="Фото секционных ворот">
             <h3>Секционные</h3>
             <p>Универсальный вариант для складов и цехов: теплоизоляция, надежность, широкий выбор комплектаций.</p>
             <div style="margin-top: 14px;">
@@ -1307,7 +1312,7 @@
             </div>
           </article>
           <article class="card">
-            <div class="media-placeholder" role="img" aria-label="Фото складчатых ворот"></div>
+            <img class="media-placeholder" src="img/sclad.jpg" alt="Фото складчатых ворот">
             <h3>Складчатые</h3>
             <p>Для больших проемов и ограниченного пространства. Удобное открытие и высокая герметичность.</p>
             <div style="margin-top: 14px;">
@@ -1315,7 +1320,7 @@
             </div>
           </article>
           <article class="card">
-            <div class="media-placeholder" role="img" aria-label="Фото распашных ворот"></div>
+            <img class="media-placeholder" src="img/rasp.jpg" alt="Фото распашных ворот">
             <h3>Распашные</h3>
             <p>Простое и выносливое решение для объектов с особыми требованиями к конструкции и бюджету.</p>
             <div style="margin-top: 14px;">
@@ -1323,7 +1328,7 @@
             </div>
           </article>
           <article class="card">
-            <div class="media-placeholder" role="img" aria-label="Фото скоростных ворот"></div>
+            <img class="media-placeholder" src="img/scoros.jpg" alt="Фото скоростных ворот">
             <h3>Скоростные</h3>
             <p>Максимальная скорость цикла для интенсивных зон: логистика, производство, холодильные камеры.</p>
             <div style="margin-top: 14px;">
@@ -1331,7 +1336,7 @@
             </div>
           </article>
           <article class="card">
-            <div class="media-placeholder" role="img" aria-label="Фото спиральных ворот"></div>
+            <img class="media-placeholder" src="img/spiral.jpg" alt="Фото спиральных ворот">
             <h3>Спиральные</h3>
             <p>Компактная конструкция с минимальным притолоком. Высокая скорость, тихая работа, идеальны для ограниченного пространства.</p>
             <div style="margin-top: 14px;">
@@ -1339,7 +1344,7 @@
             </div>
           </article>
           <article class="card">
-            <div class="media-placeholder" role="img" aria-label="Фото индивидуальных ворот"></div>
+            <img class="media-placeholder" src="img/ind.jpg" alt="Фото индивидуальных ворот">
             <h3>Индивидуальные</h3>
             <p>Нестандартный проем, особые условия или уникальный объект — спроектируем и изготовим ворота точно под ваше ТЗ.</p>
             <div style="margin-top: 14px;">
@@ -1445,25 +1450,7 @@
     <section class="section" id="gallery">
       <div class="container">
         <h2>Галерея работ</h2>
-        <div class="gallery-grid" aria-label="Галерея из 17 фото">
-          <div class="gallery-item" role="img" aria-label="Фото 1"></div>
-          <div class="gallery-item" role="img" aria-label="Фото 2"></div>
-          <div class="gallery-item" role="img" aria-label="Фото 3"></div>
-          <div class="gallery-item" role="img" aria-label="Фото 4"></div>
-          <div class="gallery-item" role="img" aria-label="Фото 5"></div>
-          <div class="gallery-item" role="img" aria-label="Фото 6"></div>
-          <div class="gallery-item" role="img" aria-label="Фото 7"></div>
-          <div class="gallery-item" role="img" aria-label="Фото 8"></div>
-          <div class="gallery-item" role="img" aria-label="Фото 9"></div>
-          <div class="gallery-item" role="img" aria-label="Фото 10"></div>
-          <div class="gallery-item" role="img" aria-label="Фото 11"></div>
-          <div class="gallery-item" role="img" aria-label="Фото 12"></div>
-          <div class="gallery-item" role="img" aria-label="Фото 13"></div>
-          <div class="gallery-item" role="img" aria-label="Фото 14"></div>
-          <div class="gallery-item" role="img" aria-label="Фото 15"></div>
-          <div class="gallery-item" role="img" aria-label="Фото 16"></div>
-          <div class="gallery-item" role="img" aria-label="Фото 17"></div>
-        </div>
+        <div class="gallery-grid" id="galleryGrid" aria-label="Галерея работ"></div>
       </div>
     </section>
 
@@ -1928,6 +1915,31 @@
       });
 
       /* ═══════════════════════════════════════
+         Gallery: random 17 from img/gallery/
+         ═══════════════════════════════════════ */
+      (() => {
+        const GALLERY_TOTAL = 107;  // <-- общее кол-во фото в img/gallery/ (1.jpg … N.jpg)
+        const DISPLAY_COUNT = 20;
+
+        const all = Array.from({ length: GALLERY_TOTAL }, (_, i) => i + 1);
+        for (let i = all.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [all[i], all[j]] = [all[j], all[i]];
+        }
+        const picked = all.slice(0, DISPLAY_COUNT);
+
+        const grid = document.getElementById('galleryGrid');
+        picked.forEach((num) => {
+          const img = document.createElement('img');
+          img.className = 'gallery-item';
+          img.src = 'img/gallery/' + num + '.jpg';
+          img.alt = 'Фото ' + num;
+          img.loading = 'lazy';
+          grid.appendChild(img);
+        });
+      })();
+
+      /* ═══════════════════════════════════════
          Lightbox
          ═══════════════════════════════════════ */
       const lightbox = document.getElementById('lightbox');
@@ -1945,17 +1957,32 @@
 
       const render = () => {
         const el = clickable[current];
-        const label = el?.getAttribute('aria-label') || `Фото ${current + 1}`;
+        const label = el?.getAttribute('aria-label') || el?.getAttribute('alt') || `Фото ${current + 1}`;
         lbTitle.textContent = label;
 
         lbMedia.innerHTML = '';
-        const box = document.createElement('div');
-        const bg = getComputedStyle(el).backgroundImage;
-        if (bg && bg !== 'none') box.style.backgroundImage = bg;
-        box.style.backgroundSize = 'cover';
-        box.style.backgroundPosition = 'center';
-        box.style.backgroundRepeat = 'no-repeat';
-        lbMedia.appendChild(box);
+
+        // If the clicked element is an <img>, use its src
+        if (el.tagName === 'IMG' && el.src) {
+          const img = document.createElement('img');
+          img.src = el.src;
+          img.alt = label;
+          img.style.width = '100%';
+          img.style.height = '100%';
+          img.style.objectFit = 'contain';
+          img.style.borderRadius = '8px';
+          lbMedia.appendChild(img);
+        } else {
+          const box = document.createElement('div');
+          const bg = getComputedStyle(el).backgroundImage;
+          if (bg && bg !== 'none') box.style.backgroundImage = bg;
+          box.style.backgroundSize = 'cover';
+          box.style.backgroundPosition = 'center';
+          box.style.backgroundRepeat = 'no-repeat';
+          box.style.width = '100%';
+          box.style.height = '100%';
+          lbMedia.appendChild(box);
+        }
 
         lbPrev.disabled = current <= 0;
         lbNext.disabled = current >= clickable.length - 1;
